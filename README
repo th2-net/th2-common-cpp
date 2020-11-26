@@ -1,0 +1,3 @@
+Command line parameters:
+
+--rabbitConfiguration=cfg/rabbitMQ.json --messageRouterConfiguration=cfg/mq.json

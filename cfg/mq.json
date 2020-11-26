@@ -1,0 +1,19 @@
+{
+  "queues": {
+    "test_queue" : {
+      "name": "test_queue_name",
+      "queue": "test_queue_name",
+      "exchange": "demo_exchange",
+      "attributes": ["subscribe", "raw"]
+    },
+    "output_queue" : {
+      "name" : "out_queue_name",
+      "queue": "out_queue_name",
+      "exchange": "demo_exchange",
+      "attributes": ["publish", "raw", "event"],
+      "filters": [
+
+      ]
+    }
+  }
+}
