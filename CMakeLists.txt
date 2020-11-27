@@ -26,6 +26,14 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} doesn't have C++17 support.")
 endif()
 
+set(GENERATE_PROTOBUF ON)
+
+if (GENERATE_PROTOBUF)
+    execute_process(WORKING_DIRECTORY "./proto" COMMAND "./gen_proto.sh")
+endif()
+
+set(BOOST_ROOT "/home/sa/usr_gcc_10_fin")
+
 file(GLOB_RECURSE HEADERS "include/*.h")
 file(GLOB_RECURSE SRC     "src/*.c*")
 
@@ -59,4 +67,10 @@ if (EXAMPLE)
     add_executable(${PROJECT_NAME}_tests ${HEADERS} main.cpp)
     target_include_directories(${PROJECT_NAME}_tests PRIVATE include ${LIB_SEARCH_PATH}/include)
     target_link_libraries(${PROJECT_NAME}_tests ${PROJECT_NAME}_static)
+endif()
+
+if (GENERATE_PROTOBUF)
+    execute_process(
+	WORKING_DIRECTORY "./proto"
+	COMMAND "./gen_proto.sh")
 endif()
