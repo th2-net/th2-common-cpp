@@ -18,7 +18,7 @@
 
 #include "schema/message/impl/rabbitmq/AbstractRabbitSender.h"
 
-#include "infra.pb.h"
+#include "common.pb.h"
 
 namespace th2::common_cpp {
 

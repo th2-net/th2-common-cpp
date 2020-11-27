@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "infra.pb.h"
+#include "common.pb.h"
 #include "schema/message/impl/rabbitmq/router/AbstractRabbitBatchMessageRouter.h"
 #include "schema/message/impl/rabbitmq/raw/RabbitRawBatchQueue.h"
 

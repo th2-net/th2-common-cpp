@@ -18,7 +18,7 @@
 
 #include <string_view>
 
-#include "infra.pb.h"
+#include "common.pb.h"
 
 namespace th2::common_cpp {
 

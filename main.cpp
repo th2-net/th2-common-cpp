@@ -18,7 +18,7 @@
 
 #include "schema/factory/CommonFactory.h"
 
-#include "infra.pb.h"
+#include "common.pb.h"
 
 int main(int argc, char* argv[]) {
 
@@ -57,9 +57,9 @@ int main(int argc, char* argv[]) {
 
             bool from_client = true;
             if (from_client) {
-                message_id->set_direction(th2::Direction::SECOND);
+                message_id->set_direction(Direction::SECOND);
             } else {
-                message_id->set_direction(th2::Direction::FIRST);
+                message_id->set_direction(Direction::FIRST);
             }
 
             message_id->set_sequence(0);
