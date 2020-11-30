@@ -32,11 +32,11 @@ protected:
         return queue;
     }
 
-    queue_attributes_t required_subscribe_attributes() override {
+    [[nodiscard]] queue_attributes_t required_subscribe_attributes() noexcept override {
         return REQUIRED_SUBSCRIBE_ATTRIBUTES;
     }
 
-    queue_attributes_t required_send_attributes() override {
+    [[nodiscard]] queue_attributes_t required_send_attributes() noexcept override {
         return REQUIRED_SEND_ATTRIBUTES;
     }
 
@@ -46,8 +46,8 @@ protected:
 
 private:
 
-    queue_attributes_t REQUIRED_SUBSCRIBE_ATTRIBUTES {"raw", "subscribe"};
-    queue_attributes_t REQUIRED_SEND_ATTRIBUTES {"raw", "publish"};
+    const queue_attributes_t REQUIRED_SUBSCRIBE_ATTRIBUTES {"raw", "subscribe"};
+    const queue_attributes_t REQUIRED_SEND_ATTRIBUTES {"raw", "publish"};
 };
 
 }

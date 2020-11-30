@@ -22,18 +22,12 @@ class SubscribeTarget {
 
 public:
 
-    std::string_view get_queue() {
-        return queue;
-    }
-
-    std::string_view get_routing_key() {
-        return routing_key;
-    }
+    [[nodiscard]] std::string_view get_queue() const noexcept { return queue; }
+    [[nodiscard]] std::string_view get_routing_key() const noexcept { return routing_key; }
 
 private:
 
     std::string queue;
-
     std::string routing_key;
 
 };

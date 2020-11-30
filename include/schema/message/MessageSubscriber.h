@@ -34,7 +34,7 @@ public:
     virtual void start() = 0;
 
     //@Deprecated(forRemoval = true, since = "1.4.2")
-    virtual bool isOpen() = 0;
+    [[deprecated]] virtual bool isOpen() = 0;
 
     virtual void add_listener(message_listener_ptr<MessageBatchType> message_listener) = 0;
 

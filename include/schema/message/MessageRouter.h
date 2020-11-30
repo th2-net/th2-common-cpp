@@ -31,7 +31,7 @@ public:
     virtual void init(connection_manager_ptr connection_manager, message_router_configuration_ptr message_router_configuration) = 0;
 
     //Deprecated(since = "1.4.2", forRemoval = true)
-    virtual subscriber_monitor_ptr subscribe(const std::string& queue_alias, message_listener_ptr<MessageBatchType> callback) = 0;
+    [[deprecated]] virtual subscriber_monitor_ptr subscribe(const std::string& queue_alias, message_listener_ptr<MessageBatchType> callback) = 0;
     virtual subscriber_monitor_ptr subscribe(message_listener_ptr<MessageBatchType> callback, const queue_attributes_t& queue_attributes) = 0;
     virtual subscriber_monitor_ptr subscribeAll(message_listener_ptr<MessageBatchType> callback) = 0;
     virtual subscriber_monitor_ptr subscribeAll(message_listener_ptr<MessageBatchType> callback, const queue_attributes_t& queue_attributes) = 0;
