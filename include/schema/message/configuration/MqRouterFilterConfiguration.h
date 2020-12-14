@@ -23,11 +23,11 @@ namespace th2::common_cpp {
 class MqRouterFilterConfiguration : public IRouterFilter {
 public:
     const FieldFilterMap& get_metadata() override {
-
+    	return metadata;
     }
 
     const FieldFilterMap& get_message() override {
-
+    	return message;
     }
 
 private:

@@ -26,13 +26,7 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} doesn't have C++17 support.")
 endif()
 
-set(GENERATE_PROTOBUF ON)
-
-if (GENERATE_PROTOBUF)
-    execute_process(WORKING_DIRECTORY "./proto" COMMAND "./gen_proto.sh")
-endif()
-
-set(BOOST_ROOT "/home/sa/usr_gcc_10_fin")
+#set(BOOST_ROOT "/home/sa/usr_gcc_10_fin")
 
 file(GLOB_RECURSE HEADERS "include/*.h")
 file(GLOB_RECURSE SRC     "src/*.c*")
@@ -51,10 +45,10 @@ set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED OFF)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-link_directories(. ${LIB_SEARCH_PATH}/lib ${LIB_SEARCH_PATH}/lib64 ${ADDITIONAL_LIBRARY_PATH})
-
 find_package(Boost REQUIRED COMPONENTS program_options system)
 message(STATUS "Boost version: ${Boost_VERSION}")
+
+link_directories(. ${LIB_SEARCH_PATH}/lib ${LIB_SEARCH_PATH}/lib64 ${ADDITIONAL_LIBRARY_PATH})
 
 add_library(${PROJECT_NAME}_static STATIC ${SRC})
 target_include_directories(${PROJECT_NAME}_static PRIVATE "." include ${LIB_SEARCH_PATH}/include)
@@ -67,10 +61,4 @@ if (EXAMPLE)
     add_executable(${PROJECT_NAME}_tests ${HEADERS} main.cpp)
     target_include_directories(${PROJECT_NAME}_tests PRIVATE include ${LIB_SEARCH_PATH}/include)
     target_link_libraries(${PROJECT_NAME}_tests ${PROJECT_NAME}_static)
-endif()
-
-if (GENERATE_PROTOBUF)
-    execute_process(
-	WORKING_DIRECTORY "./proto"
-	COMMAND "./gen_proto.sh")
 endif()
