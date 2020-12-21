@@ -131,7 +131,10 @@ void from_json(const nlohmann::json& j, RabbitMQConfiguration& cfg) {
     j.at("port").get_to(cfg.port);
     j.at("username").get_to(cfg.username);
     j.at("password").get_to(cfg.password);
-    j.at("subscriberName").get_to(cfg.subscriberName);
+
+    if (j.contains("subscriberName")) {
+    	j.at("subscriberName").get_to(cfg.subscriberName);
+    }
 
     if (j.contains("exchangeName")) {
         j.at("exchangeName").get_to(cfg.exchangeName);
