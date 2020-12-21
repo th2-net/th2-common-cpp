@@ -1,0 +1,3 @@
+[submodule "submodules/th2-grpc-common"]
+	path = submodules/th2-grpc-common
+	url = https://github.com/th2-net/th2-grpc-common.git
