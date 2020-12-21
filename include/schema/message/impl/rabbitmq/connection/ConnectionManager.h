@@ -64,7 +64,7 @@ public:
         addr_str.append("@");
         addr_str.append(rmq_configuration->get_host());
         addr_str.append(":");
-        addr_str.append(std::to_string(rmq_configuration->get_port()));
+        addr_str.append(rmq_configuration->get_port());
         addr_str.append(rmq_configuration->get_vHost());
 
         std::cout << addr_str << std::endl;

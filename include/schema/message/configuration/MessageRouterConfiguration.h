@@ -28,6 +28,11 @@ class MessageRouterConfiguration {
 public:
     static MessageRouterConfiguration read(const std::filesystem::path cfg_file) {
         std::ifstream stream(cfg_file.string().c_str());
+
+        std::cout << cfg_file.string() << ": \n" << stream.rdbuf() << std::endl;
+
+        stream.seekg (0, stream.beg);
+
         nlohmann::json js;
         stream >> js;
 
