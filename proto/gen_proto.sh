@@ -14,7 +14,7 @@
 
 #https://github.com/th2-net/th2-grpc-common/blob/master/src/main/proto/th2_grpc_common/common.proto
 
-protoc common.proto --cpp_out=../src
-protoc common.proto --grpc_out=../src --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin
+protoc --proto_path=../submodules/th2-grpc-common/src/main/proto/th2_grpc_common common.proto --cpp_out=../src
+protoc --proto_path=../submodules/th2-grpc-common/src/main/proto/th2_grpc_common common.proto --grpc_out=../src --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin
 
 mv -f ../src/*.pb.h ../include
