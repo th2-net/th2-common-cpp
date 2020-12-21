@@ -28,6 +28,11 @@ class RabbitMQConfiguration {
 public:
     static RabbitMQConfiguration read(const std::filesystem::path cfg_file) {
         std::ifstream stream(cfg_file.string().c_str());
+
+        std::cout << cfg_file.string() << ": \n" << stream.rdbuf() << std::endl;
+
+        stream.seekg (0, stream.beg);
+
         nlohmann::json js;
         stream >> js;
 
@@ -95,7 +100,7 @@ public:
 private:
      std::string host;
      std::string vHost;
-     int32_t port;
+     std::string port;
      std::string username;
      std::string password;
      std::string subscriberName;
