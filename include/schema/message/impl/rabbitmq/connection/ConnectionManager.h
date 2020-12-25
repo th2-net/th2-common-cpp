@@ -20,14 +20,6 @@
 #include <memory>
 #include <thread>
 
-//#include <boost/asio/io_service.hpp>
-//#include <boost/asio/strand.hpp>
-//#include <boost/asio/deadline_timer.hpp>
-//
-//#include <amqpcpp.h>
-//#include <amqpcpp/linux_tcp.h>
-//#include <amqpcpp/libboostasio.h>
-
 #include <amqp.h>
 #include <amqp_tcp_socket.h>
 

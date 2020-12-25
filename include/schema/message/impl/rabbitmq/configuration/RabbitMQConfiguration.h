@@ -42,6 +42,7 @@ public:
         return rmq_cfg;
     }
 
+
     friend inline void from_json(const nlohmann::json& j, RabbitMQConfiguration& cfg);
 
     [[nodiscard]] const std::string& get_host() const noexcept {

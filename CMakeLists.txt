@@ -26,8 +26,6 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} doesn't have C++17 support.")
 endif()
 
-#set(BOOST_ROOT "/home/sa/usr_gcc_10_fin")
-
 file(GLOB_RECURSE HEADERS "include/*.h")
 file(GLOB_RECURSE SRC     "src/*.c*")
 
