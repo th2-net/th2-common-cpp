@@ -26,8 +26,6 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} doesn't have C++17 support.")
 endif()
 
-#set(BOOST_ROOT "/home/sa/usr_gcc_10_fin")
-
 file(GLOB_RECURSE HEADERS "include/*.h")
 file(GLOB_RECURSE SRC     "src/*.c*")
 
@@ -52,7 +50,7 @@ link_directories(. ${LIB_SEARCH_PATH}/lib ${LIB_SEARCH_PATH}/lib64 ${ADDITIONAL_
 
 add_library(${PROJECT_NAME}_static STATIC ${SRC})
 target_include_directories(${PROJECT_NAME}_static PRIVATE "." include ${LIB_SEARCH_PATH}/include)
-target_link_libraries(${PROJECT_NAME}_static PRIVATE Boost::program_options Boost::system protobuf amqpcpp dl pthread)
+target_link_libraries(${PROJECT_NAME}_static PRIVATE Boost::program_options Boost::system protobuf rabbitmq dl pthread)
 
 set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 set(INSTALLED_LIBS ${INSTALLED_LIBS} ${PROJECT_NAME}_static)

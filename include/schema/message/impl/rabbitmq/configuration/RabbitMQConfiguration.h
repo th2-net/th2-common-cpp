@@ -42,30 +42,30 @@ public:
         return rmq_cfg;
     }
 
+
     friend inline void from_json(const nlohmann::json& j, RabbitMQConfiguration& cfg);
 
-    [[nodiscard]] std::string_view get_host() const noexcept {
+    [[nodiscard]] const std::string& get_host() const noexcept {
         return host;
     }
 
-    //not std::string_view because AMQP::Connection handles const std::string&
     [[nodiscard]] const auto& get_vHost() const noexcept {
         return vHost;
     }
 
-    [[nodiscard]] auto get_port() const noexcept {
+    [[nodiscard]] const auto& get_port() const noexcept {
         return port;
     }
 
-    [[nodiscard]] std::string_view get_username() const noexcept {
+    [[nodiscard]] const std::string& get_username() const noexcept {
         return username;
     }
 
-    [[nodiscard]] std::string_view get_password() const noexcept {
+    [[nodiscard]] const std::string& get_password() const noexcept {
         return password;
     }
 
-    [[nodiscard]] std::string_view get_subscriberName() const noexcept {
+    [[nodiscard]] const std::string& get_subscriberName() const noexcept {
         return subscriberName;
     }
 
