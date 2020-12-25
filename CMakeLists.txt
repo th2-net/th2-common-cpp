@@ -52,7 +52,7 @@ link_directories(. ${LIB_SEARCH_PATH}/lib ${LIB_SEARCH_PATH}/lib64 ${ADDITIONAL_
 
 add_library(${PROJECT_NAME}_static STATIC ${SRC})
 target_include_directories(${PROJECT_NAME}_static PRIVATE "." include ${LIB_SEARCH_PATH}/include)
-target_link_libraries(${PROJECT_NAME}_static PRIVATE Boost::program_options Boost::system protobuf amqpcpp dl pthread)
+target_link_libraries(${PROJECT_NAME}_static PRIVATE Boost::program_options Boost::system protobuf rabbitmq dl pthread)
 
 set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 set(INSTALLED_LIBS ${INSTALLED_LIBS} ${PROJECT_NAME}_static)

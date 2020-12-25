@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
     {
         auto raw_router = factory->get_message_router_raw_batch();
 
-        constexpr size_t batch_total = 10'000;
+        constexpr size_t batch_total = 10;
         for (size_t i = 0; i < batch_total; ++i) {
             RawMessageBatch batch;
 
@@ -69,42 +69,50 @@ int main(int argc, char* argv[]) {
 
             raw_msg_batch->set_body(std::string("Message body"));
 
+        	queue_attributes_t attr;
+
+        	attr.emplace_back("publish");
+        	attr.emplace_back("raw");
+        	attr.emplace_back("first");
+        	attr.emplace_back("store");
+
+//            raw_router->sendAll(batch, attr);
             raw_router->send(batch);
         }
     }
 
-    std::cout << "Sending events" << std::endl;
-
-    {
-        auto event_router = factory->get_event_batch_router();
-
-        constexpr size_t batch_total = 10'000;
-        for (size_t i = 0; i < batch_total; ++i) {
-            EventBatch event_batch;
-
-            auto event = event_batch.add_events();
-
-            auto start_timestamp = event->mutable_start_timestamp();
-            auto end_timestamp = event->mutable_end_timestamp();
-
-            start_timestamp->set_seconds(1234);
-            start_timestamp->set_nanos(5678);
-            end_timestamp->set_seconds(2345);
-            end_timestamp->set_nanos(6789);
-
-            event->set_status(SUCCESS);
-            event->set_name(std::string("Demo_event"));
-            event->set_type(std::string("Example"));
-            event->set_body(std::string("Event body"));
-
-            //event_batch.set_allocated_parent_event_id( );
-
-            auto event_id = event->id();
-            event_id.set_id("ex_event");
-
-            event_router->send(event_batch);
-        }
-    }
+//    std::cout << "Sending events" << std::endl;
+//
+//    {
+//        auto event_router = factory->get_event_batch_router();
+//
+//        constexpr size_t batch_total = 10'000;
+//        for (size_t i = 0; i < batch_total; ++i) {
+//            EventBatch event_batch;
+//
+//            auto event = event_batch.add_events();
+//
+//            auto start_timestamp = event->mutable_start_timestamp();
+//            auto end_timestamp = event->mutable_end_timestamp();
+//
+//            start_timestamp->set_seconds(1234);
+//            start_timestamp->set_nanos(5678);
+//            end_timestamp->set_seconds(2345);
+//            end_timestamp->set_nanos(6789);
+//
+//            event->set_status(SUCCESS);
+//            event->set_name(std::string("Demo_event"));
+//            event->set_type(std::string("Example"));
+//            event->set_body(std::string("Event body"));
+//
+//            //event_batch.set_allocated_parent_event_id( );
+//
+//            auto event_id = event->id();
+//            event_id.set_id("ex_event");
+//
+//            event_router->send(event_batch);
+//        }
+//    }
 
     std::cout << "Finished" << std::endl;
 
