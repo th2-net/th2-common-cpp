@@ -147,7 +147,7 @@ public:
 		amqp_bytes_t message_bytes;
 
 		message_bytes.len = message.size();
-		message_bytes.bytes = const_cast<void*>(message.data());
+		message_bytes.bytes = const_cast<uint8_t*>(message.data());
 
 		send_publish_command(_conn, _channel, exchange.c_str(), message_bytes, routing_key.c_str());
 
