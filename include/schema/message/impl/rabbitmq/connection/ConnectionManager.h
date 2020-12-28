@@ -143,21 +143,17 @@ public:
     }
 
     void basic_publish(const std::string& exchange, const std::string& routing_key, const ByteVector& message) {
-		size_t size = message.size();
-
-		char* buf = new char[size];
 
 		amqp_bytes_t message_bytes;
 
-		message_bytes.len = size;
-		message_bytes.bytes = buf;
+		message_bytes.len = message.size();
+		message_bytes.bytes = const_cast<void*>(message.data());
 
 		send_publish_command(_conn, _channel, exchange.c_str(), message_bytes, routing_key.c_str());
 
-		delete buf;
 
 		if (_debug) {
-			std::cout << "Exchange: " << exchange << ", routing key: " << routing_key << ", send: " << size << " byte(s)" << std::endl;
+			std::cout << "Exchange: " << exchange << ", routing key: " << routing_key << ", send: " << message.size() << " byte(s)" << std::endl;
 		}
     }
 
