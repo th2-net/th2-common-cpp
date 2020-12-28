@@ -132,6 +132,14 @@ void from_json(const nlohmann::json& j, RabbitMQConfiguration& cfg) {
     j.at("username").get_to(cfg.username);
     j.at("password").get_to(cfg.password);
 
+    if (cfg.password == "${RABBITMQ_PASS}") {
+    	if (std::getenv("RABBITMQ_PASS")) {
+    		cfg.password = std::getenv("RABBITMQ_PASS");
+    	} else {
+    		throw std::runtime_error("${RABBITMQ_PASS} is set but environment variable is not.");
+    	}
+    }
+
     if (j.contains("subscriberName")) {
     	j.at("subscriberName").get_to(cfg.subscriberName);
     }
