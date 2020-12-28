@@ -1,3 +1,5 @@
 Command line parameters:
 
 --rabbitConfiguration=cfg/rabbitMQ.json --messageRouterConfiguration=cfg/mq.json
+
+set TH2_COMMON_CPP_DEBUG envioronment variable to enable debug

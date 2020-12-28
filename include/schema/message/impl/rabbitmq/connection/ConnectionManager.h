@@ -45,6 +45,11 @@ public:
 
     ConnectionManager(rmq_configuration_ptr cfg) {
         rmq_configuration = cfg;
+        _debug = false;
+
+        if (std::getenv("TH2_COMMON_CPP_DEBUG")) {
+        	_debug = true;
+        }
     }
 
     ~ConnectionManager() {
@@ -96,8 +101,8 @@ public:
     	//channel
     }
 
-    void send_publish_command(amqp_connection_state_t conn, int channel, std::string name, amqp_bytes_t messageByte, const char * key) {
-    	amqp_bytes_t exchangeByte = amqp_cstring_bytes(name.c_str());
+    void send_publish_command(amqp_connection_state_t conn, int channel, const char * exchange_name, amqp_bytes_t messageByte, const char * key) {
+    	amqp_bytes_t exchangeByte = amqp_cstring_bytes(exchange_name);
     	amqp_bytes_t keyrouteByte = amqp_cstring_bytes(key);
     	int parms = 0;
     	amqp_basic_properties_t props;
@@ -147,9 +152,13 @@ public:
 		message_bytes.len = size;
 		message_bytes.bytes = buf;
 
-		send_publish_command(_conn, _channel, exchange, message_bytes, routing_key.c_str());
+		send_publish_command(_conn, _channel, exchange.c_str(), message_bytes, routing_key.c_str());
 
 		delete buf;
+
+		if (_debug) {
+			std::cout << "Exchange: " << exchange << ", routing key: " << routing_key << ", send: " << size << " byte(s)" << std::endl;
+		}
     }
 
 private:
@@ -163,6 +172,7 @@ private:
 	int _status;
 	int _channel;
 	std::string _type;
+	bool _debug;
 };
 
 using connection_manager_ptr = std::shared_ptr<ConnectionManager>;

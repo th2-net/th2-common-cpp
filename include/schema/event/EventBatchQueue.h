@@ -29,7 +29,7 @@ protected:
     message_sender_ptr<EventBatch> create_sender(connection_manager_ptr connection_manager,
                                                    queue_configuration_ptr queue_configuration) override {
         auto sender = std::make_shared<EventBatchSender>();
-        sender->init(connection_manager, queue_configuration->get_exchange(), queue_configuration->get_queue());
+        sender->init(connection_manager, queue_configuration->get_exchange(), queue_configuration->get_name());
         return sender;
     }
 
