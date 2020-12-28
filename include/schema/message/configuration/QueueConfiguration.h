@@ -55,6 +55,11 @@ public:
         return queue;
     }
 
+    [[nodiscard]] const auto& get_name() const noexcept {
+        return name;
+    }
+
+
     [[nodiscard]] const auto& get_exchange() const noexcept {
         return exchange;
     }
