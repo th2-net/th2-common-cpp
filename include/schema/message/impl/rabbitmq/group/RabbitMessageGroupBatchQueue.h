@@ -19,15 +19,15 @@
 #include "common.pb.h"
 
 #include "schema/message/impl/rabbitmq/AbstractRabbitQueue.h"
-#include "schema/message/impl/rabbitmq/parsed/RabbitParsedBatchSender.h"
+#include "schema/message/impl/rabbitmq/group/RabbitMessageGroupBatchSender.h"
 
 namespace th2::common_cpp {
 
-class RabbitParsedBatchQueue : public AbstractRabbitQueue<MessageBatch> {
+class RabbitMessageGroupBatchQueue : public AbstractRabbitQueue<MessageGroupBatch> {
 protected:
-    message_sender_ptr<MessageBatch> create_sender(connection_manager_ptr connection_manager,
+    message_sender_ptr<MessageGroupBatch> create_sender(connection_manager_ptr connection_manager,
                                                    queue_configuration_ptr queue_configuration) override {
-        auto sender = std::make_shared<RabbitParsedBatchSender>();
+        auto sender = std::make_shared<RabbitMessageGroupBatchSender>();
         sender->init(connection_manager, queue_configuration->get_exchange(), queue_configuration->get_routing_key());
         return sender;
     }

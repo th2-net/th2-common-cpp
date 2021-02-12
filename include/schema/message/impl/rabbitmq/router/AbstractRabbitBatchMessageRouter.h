@@ -36,12 +36,10 @@ protected:
                     it = pair.first;
                 }
 
-                MessageBatchType& batch = it->second;
-                auto new_msg = batch.add_messages();
+                auto new_msg = add_messages(it->second);
                 *new_msg = msg;
             }
         }
-
         return result;
     }
 
@@ -60,6 +58,8 @@ protected:
 
         return aliases;
     }
+
+    virtual MessageType* add_messages(MessageBatchType&) const = 0;
 
     virtual const google::protobuf::RepeatedPtrField<MessageType>& get_messages(const MessageBatchType& batch) const = 0;
 };
