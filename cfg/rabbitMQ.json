@@ -1,7 +1,7 @@
 {
   "host": "127.0.0.1",
   "vHost": "/",
-  "port": 5672,
+  "port": "5672",
   "username": "rabbitmq",
   "password": "rabbitmq",
   "subscriberName": "subscriber_name"

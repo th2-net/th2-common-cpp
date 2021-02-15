@@ -21,6 +21,7 @@
 
 #include "schema/message/impl/rabbitmq/parsed/RabbitParsedBatchRouter.h"
 #include "schema/message/impl/rabbitmq/raw/RabbitRawBatchRouter.h"
+#include "schema/message/impl/rabbitmq/group/RabbitMessageGroupBatchRouter.h"
 #include "schema/event/EventBatchRouter.h"
 
 #include "schema/message/configuration/MessageRouterConfiguration.h"
@@ -43,11 +44,13 @@ public:
             message_router_cfg = std::make_shared<MessageRouterConfiguration>(load_message_router_configuration());
         }
 
-        init(get_message_router_parsed_batch(), get_message_router_raw_batch());
+        init(get_message_router_parsed_batch(), get_message_router_raw_batch(), get_event_batch_router(), get_message_router_message_group_batch());
     }
 
     void init(message_router_ptr<MessageBatch> message_router_parsed_batch,
-              message_router_ptr<RawMessageBatch> message_router_raw_batch)
+              message_router_ptr<RawMessageBatch> message_router_raw_batch,
+              message_router_ptr<EventBatch> event_batch_router,
+              message_router_ptr<MessageGroupBatch> message_router_group_batch)
     {
         if (!rmq_cfg) {
             rmq_cfg = std::make_shared<RabbitMQConfiguration>(load_rabbit_mq_configuration());
@@ -59,6 +62,8 @@ public:
 
         this->message_router_parsed_batch = message_router_parsed_batch;
         this->message_router_raw_batch = message_router_raw_batch;
+        this->event_batch_router = event_batch_router;
+        this->message_router_group_batch = message_router_group_batch;
     }
 
     [[nodiscard]]
@@ -86,6 +91,15 @@ public:
             event_batch_router->init(get_rmq_connection_manager(), message_router_cfg);
         }
         return event_batch_router;
+    }
+
+    [[nodiscard]]
+    message_router_ptr<MessageGroupBatch> get_message_router_message_group_batch() {
+        if (message_router_group_batch == nullptr) {
+            message_router_group_batch = std::make_shared<RabbitMessageGroupBatchRouter>();
+            message_router_group_batch->init(get_rmq_connection_manager(), message_router_cfg);
+        }
+        return message_router_group_batch;
     }
 
 protected:
@@ -135,6 +149,7 @@ private:
     message_router_ptr<MessageBatch> message_router_parsed_batch;
     message_router_ptr<RawMessageBatch> message_router_raw_batch;
     message_router_ptr<EventBatch> event_batch_router;
+    message_router_ptr<MessageGroupBatch> message_router_group_batch;
 
     mutable connection_manager_ptr rmq_connection_manager;
 };

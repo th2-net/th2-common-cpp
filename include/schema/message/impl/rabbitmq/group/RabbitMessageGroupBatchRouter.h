@@ -18,16 +18,16 @@
 
 #include "common.pb.h"
 #include "schema/message/impl/rabbitmq/router/AbstractRabbitBatchMessageRouter.h"
-#include "schema/message/impl/rabbitmq/raw/RabbitRawBatchQueue.h"
+#include "schema/message/impl/rabbitmq/group/RabbitMessageGroupBatchQueue.h"
 
 namespace th2::common_cpp {
 
-class RabbitRawBatchRouter : public AbstractRabbitBatchMessageRouter<RawMessage, RawMessageBatch> {
+class RabbitMessageGroupBatchRouter : public AbstractRabbitBatchMessageRouter<MessageGroup, MessageGroupBatch> {
 public:
 
 protected:
-    message_queue_ptr<RawMessageBatch> create_queue(connection_manager_ptr connection_manager, queue_configuration_ptr queue_configuration) override {
-        message_queue_ptr<RawMessageBatch> queue = std::make_shared<RabbitRawBatchQueue>();
+    message_queue_ptr<MessageGroupBatch> create_queue(connection_manager_ptr connection_manager, queue_configuration_ptr queue_configuration) override {
+        message_queue_ptr<MessageGroupBatch> queue = std::make_shared<RabbitMessageGroupBatchQueue>();
         queue->init(connection_manager, queue_configuration);
         return queue;
     }
@@ -40,12 +40,12 @@ protected:
         return REQUIRED_SEND_ATTRIBUTES;
     }
 
-    [[nodiscard]] RawMessage* add_messages(RawMessageBatch& batch) const override {
-        return batch.add_messages();
+    [[nodiscard]] MessageGroup* add_messages(MessageGroupBatch& batch) const override {
+        return batch.add_groups();
     }
 
-    const google::protobuf::RepeatedPtrField<RawMessage>& get_messages(const RawMessageBatch& batch) const override {
-        return batch.messages();
+    const google::protobuf::RepeatedPtrField<MessageGroup>& get_messages(const MessageGroupBatch& batch) const override {
+        return batch.groups();
     }
 
 private:
@@ -55,3 +55,4 @@ private:
 };
 
 }
+

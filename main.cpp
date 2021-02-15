@@ -69,50 +69,97 @@ int main(int argc, char* argv[]) {
 
             raw_msg_batch->set_body(std::string("Message body"));
 
-        	queue_attributes_t attr;
+            queue_attributes_t attr;
 
-        	attr.emplace_back("publish");
-        	attr.emplace_back("raw");
-        	attr.emplace_back("first");
-        	attr.emplace_back("store");
+            attr.emplace_back("publish");
+            attr.emplace_back("raw");
+            attr.emplace_back("first");
+            attr.emplace_back("store");
 
 //            raw_router->sendAll(batch, attr);
             raw_router->send(batch);
         }
     }
 
-//    std::cout << "Sending events" << std::endl;
-//
-//    {
-//        auto event_router = factory->get_event_batch_router();
-//
-//        constexpr size_t batch_total = 10'000;
-//        for (size_t i = 0; i < batch_total; ++i) {
-//            EventBatch event_batch;
-//
-//            auto event = event_batch.add_events();
-//
-//            auto start_timestamp = event->mutable_start_timestamp();
-//            auto end_timestamp = event->mutable_end_timestamp();
-//
-//            start_timestamp->set_seconds(1234);
-//            start_timestamp->set_nanos(5678);
-//            end_timestamp->set_seconds(2345);
-//            end_timestamp->set_nanos(6789);
-//
-//            event->set_status(SUCCESS);
-//            event->set_name(std::string("Demo_event"));
-//            event->set_type(std::string("Example"));
-//            event->set_body(std::string("Event body"));
-//
-//            //event_batch.set_allocated_parent_event_id( );
-//
-//            auto event_id = event->id();
-//            event_id.set_id("ex_event");
-//
-//            event_router->send(event_batch);
-//        }
-//    }
+    std::cout << "Sending events" << std::endl;
+
+    {
+        auto event_router = factory->get_event_batch_router();
+
+        constexpr size_t batch_total = 10;
+        for (size_t i = 0; i < batch_total; ++i) {
+            EventBatch event_batch;
+
+            auto event = event_batch.add_events();
+
+            auto start_timestamp = event->mutable_start_timestamp();
+            auto end_timestamp = event->mutable_end_timestamp();
+
+            start_timestamp->set_seconds(1234);
+            start_timestamp->set_nanos(5678);
+            end_timestamp->set_seconds(2345);
+            end_timestamp->set_nanos(6789);
+
+            event->set_status(SUCCESS);
+            event->set_name(std::string("Demo_event"));
+            event->set_type(std::string("Example"));
+            event->set_body(std::string("Event body"));
+
+            auto event_id = event->id();
+            event_id.set_id("ex_event");
+
+            event_router->send(event_batch);
+        }
+    }
+
+    std::cout << "Sending group messages" << std::endl;
+
+    {
+        auto group_router = factory->get_message_router_message_group_batch();
+
+        constexpr size_t batch_total = 10;
+        for (size_t i = 0; i < batch_total; ++i) {
+            MessageGroupBatch batch;
+
+            auto group_msg_batch = batch.add_groups();
+            auto msg = (group_msg_batch->add_messages())->mutable_raw_message();
+            auto meta = msg->mutable_metadata();
+
+            auto timestamp = meta->mutable_timestamp();
+            timestamp->set_seconds(1234);
+            timestamp->set_nanos(5678);
+
+            auto properties = meta->mutable_properties();
+
+            (*properties)["requestId"] = std::to_string(0);
+            (*properties)["requestRef"] = std::to_string(1);
+
+            auto message_id = meta->mutable_id();
+
+            bool from_client = true;
+            if (from_client) {
+                message_id->set_direction(Direction::SECOND);
+            } else {
+                message_id->set_direction(Direction::FIRST);
+            }
+
+            message_id->set_sequence(0);
+
+            auto connection_id = message_id->mutable_connection_id();
+            connection_id->set_session_alias("session_alias");
+
+            msg->set_body(std::string("Group message body"));
+
+            queue_attributes_t attr;
+
+            attr.emplace_back("publish");
+            attr.emplace_back("raw");
+            attr.emplace_back("first");
+            attr.emplace_back("store");
+
+            group_router->send(batch);
+        }
+    }
 
     std::cout << "Finished" << std::endl;
 

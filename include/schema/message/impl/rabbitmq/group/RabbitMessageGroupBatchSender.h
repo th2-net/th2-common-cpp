@@ -16,26 +16,24 @@
 
 #pragma once
 
-#include <string_view>
-#include <string>
-#include <memory>
+#include "schema/message/impl/rabbitmq/AbstractRabbitSender.h"
+#include "common.pb.h"
 
 namespace th2::common_cpp {
 
-class SubscribeTarget {
+class RabbitMessageGroupBatchSender : public AbstractRabbitSender<MessageGroupBatch> {
+protected:
+    ByteVector value_to_bytes(const MessageGroupBatch& batch) override {
+        ByteVector bv;
 
-public:
+        auto size = batch.ByteSizeLong();
+        bv.resize(size);
 
-    [[nodiscard]] std::string_view get_queue() const noexcept { return queue; }
-    [[nodiscard]] std::string_view get_routing_key() const noexcept { return routing_key; }
+        batch.SerializePartialToArray(reinterpret_cast<void*>(bv.data()), size);
 
-private:
-
-    std::string queue;
-    std::string routing_key;
-
+        return bv;
+    }
 };
 
-using subscribe_target_ptr = std::shared_ptr<SubscribeTarget>;
-
 }
+

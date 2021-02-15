@@ -28,10 +28,9 @@ protected:
     message_sender_ptr<RawMessageBatch> create_sender(connection_manager_ptr connection_manager,
                                                    queue_configuration_ptr queue_configuration) override {
         auto sender = std::make_shared<RabbitRawBatchSender>();
-        sender->init(connection_manager, queue_configuration->get_exchange(), queue_configuration->get_name());
+        sender->init(connection_manager, queue_configuration->get_exchange(), queue_configuration->get_routing_key());
         return sender;
     }
-
 };
 
 }

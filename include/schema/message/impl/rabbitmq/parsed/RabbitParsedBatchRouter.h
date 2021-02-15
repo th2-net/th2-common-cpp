@@ -40,6 +40,10 @@ protected:
         return REQUIRED_SEND_ATTRIBUTES;
     }
 
+    [[nodiscard]] Message* add_messages(MessageBatch& batch) const override {
+        return batch.add_messages();
+    }
+
     const google::protobuf::RepeatedPtrField<Message>& get_messages(const MessageBatch& batch) const override {
         return batch.messages();
     }

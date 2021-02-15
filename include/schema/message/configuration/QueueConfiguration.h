@@ -43,6 +43,10 @@ public:
 
 //    QueueConfiguration& operator=(const QueueConfiguration& queue) = default;
 
+    [[nodiscard]] auto get_routing_key() const noexcept {
+        return routing_key;
+    }
+
     [[nodiscard]] auto is_writable() const noexcept {
         return isWritable;
     }
@@ -54,11 +58,6 @@ public:
     [[nodiscard]] const auto& get_queue() const noexcept {
         return queue;
     }
-
-    [[nodiscard]] const auto& get_name() const noexcept {
-        return name;
-    }
-
 
     [[nodiscard]] const auto& get_exchange() const noexcept {
         return exchange;
@@ -87,10 +86,11 @@ public:
     }
 
 private:
+
     /**
      * Routing key in RabbitMQ
     */
-    std::string name;
+    std::string routing_key;
 
     /**
      * Queue name in RabbitMQ
@@ -110,8 +110,9 @@ private:
 };
 
 void from_json(const nlohmann::json& j, QueueConfiguration& cfg) {
-    j.at("name").get_to(cfg.name);
+    //j.at("name").get_to(cfg.name);
     j.at("queue").get_to(cfg.queue);
+    j.at("routing_key").get_to(cfg.routing_key);
     j.at("exchange").get_to(cfg.exchange);
     j.at("attributes").get_to(cfg.attributes);
 
@@ -125,8 +126,9 @@ void from_json(const nlohmann::json& j, queue_configuration_ptr& cfg) {
         cfg = std::make_shared<QueueConfiguration>();
     }
 
-    j.at("name").get_to(cfg->name);
+    //j.at("name").get_to(cfg->name);
     j.at("queue").get_to(cfg->queue);
+    j.at("routing_key").get_to(cfg->routing_key);
     j.at("exchange").get_to(cfg->exchange);
     j.at("attributes").get_to(cfg->attributes);
 
