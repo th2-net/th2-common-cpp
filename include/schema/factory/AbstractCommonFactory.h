@@ -27,23 +27,31 @@
 #include "schema/message/configuration/MessageRouterConfiguration.h"
 #include "schema/message/impl/rabbitmq/configuration/RabbitMQConfiguration.h"
 
+//LOGGING
+#include <log4cxx/logger.h>
+
 namespace th2::common_cpp {
 
 class AbstractCommonFactory {
 public:
-    AbstractCommonFactory() = default;
+    AbstractCommonFactory(){
+    this->logger_abstract_common_factory = log4cxx::Logger::getLogger("AbstractCommonFactory");
+    }
 
     virtual ~AbstractCommonFactory() = default;
 
     void init() {
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "Start init()");
         if (!rmq_cfg) {
             rmq_cfg = std::make_shared<RabbitMQConfiguration>(load_rabbit_mq_configuration());
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "rmq_cfg is initialized"); 
         }
 
         if (!message_router_cfg) {
             message_router_cfg = std::make_shared<MessageRouterConfiguration>(load_message_router_configuration());
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_cfg is initialized"); 
         }
-
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "Start init() with params");  
         init(get_message_router_parsed_batch(), get_message_router_raw_batch(), get_event_batch_router(), get_message_router_message_group_batch());
     }
 
@@ -54,24 +62,29 @@ public:
     {
         if (!rmq_cfg) {
             rmq_cfg = std::make_shared<RabbitMQConfiguration>(load_rabbit_mq_configuration());
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "rmq_cfg is initialized"); 
         }
 
         if (!message_router_cfg) {
             message_router_cfg = std::make_shared<MessageRouterConfiguration>(load_message_router_configuration());
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_cfg is initialized"); 
         }
-
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "init params");  
         this->message_router_parsed_batch = message_router_parsed_batch;
         this->message_router_raw_batch = message_router_raw_batch;
         this->event_batch_router = event_batch_router;
         this->message_router_group_batch = message_router_group_batch;
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "end");  
     }
 
     [[nodiscard]]
     message_router_ptr<MessageBatch> get_message_router_parsed_batch() {
         if (message_router_parsed_batch == nullptr) {
             message_router_parsed_batch = std::make_shared<RabbitParsedBatchRouter>();
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_parsed_batch is created "<<&message_router_parsed_batch); 
             message_router_parsed_batch->init(get_rmq_connection_manager(), message_router_cfg);
         }
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_parsed_batch init()");
         return message_router_parsed_batch;
     }
 
@@ -79,8 +92,10 @@ public:
     message_router_ptr<RawMessageBatch> get_message_router_raw_batch() {
         if (message_router_raw_batch == nullptr) {
             message_router_raw_batch = std::make_shared<RabbitRawBatchRouter>();
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_raw_batch is created "<<&message_router_raw_batch);
             message_router_raw_batch->init(get_rmq_connection_manager(), message_router_cfg);
         }
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_raw_batch init()");
         return message_router_raw_batch;
     }
 
@@ -88,8 +103,10 @@ public:
     message_router_ptr<EventBatch> get_event_batch_router() {
         if (event_batch_router == nullptr) {
             event_batch_router = std::make_shared<EventBatchRouter>();
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "event_batch_router is created "<<&event_batch_router);
             event_batch_router->init(get_rmq_connection_manager(), message_router_cfg);
         }
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "event_batch_router init()");
         return event_batch_router;
     }
 
@@ -97,26 +114,30 @@ public:
     message_router_ptr<MessageGroupBatch> get_message_router_message_group_batch() {
         if (message_router_group_batch == nullptr) {
             message_router_group_batch = std::make_shared<RabbitMessageGroupBatchRouter>();
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_group_batch is created "<<&message_router_group_batch);
             message_router_group_batch->init(get_rmq_connection_manager(), message_router_cfg);
         }
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "message_router_group_batch init()");
         return message_router_group_batch;
     }
 
 protected:
     RabbitMQConfiguration load_rabbit_mq_configuration() {
         auto cfg_path = get_path_to_rmq_configuration();
-
+	LOG4CXX_DEBUG (logger_abstract_common_factory, "get_path_to_rmq_configuration() is successful"); 
         if (!std::filesystem::exists(cfg_path)) {
+            LOG4CXX_ERROR (logger_abstract_common_factory, "std::filesystem::exists(cfg_path) FALSE");
             throw std::runtime_error("Cannot read RabbitMQ configuration");
         }
-
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "load_rabbit_mq_configuration() is successful"); 
         return RabbitMQConfiguration::read(cfg_path);
     }
 
     MessageRouterConfiguration load_message_router_configuration() {
         auto cfg_path = get_path_to_message_router_configuration();
-
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "get_path_to_message_router_configuration() is successful"); 
         if (!std::filesystem::exists(cfg_path)) {
+            LOG4CXX_ERROR (logger_abstract_common_factory, "std::filesystem::exists(cfg_path) FALSE");
             throw std::runtime_error("Cannot read MessageRouter configuration");
         }
 
@@ -130,7 +151,9 @@ protected:
     [[nodiscard]]
     connection_manager_ptr create_rmq_connection_manager() const {
         auto cm = std::make_shared<ConnectionManager>(rmq_cfg);
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "connection_manager_ptr is created "<<&cm);
         cm->init();
+        LOG4CXX_DEBUG (logger_abstract_common_factory, "connection_manager_ptr init() successful"); 
         return cm;
     }
 
@@ -138,11 +161,13 @@ protected:
     connection_manager_ptr get_rmq_connection_manager() const noexcept {
         if (!rmq_connection_manager) {
             rmq_connection_manager = create_rmq_connection_manager();
+            LOG4CXX_DEBUG (logger_abstract_common_factory, "create_rmq_connection_manager() is successful"); 
         }
         return rmq_connection_manager;
     }
 
 private:
+    log4cxx::LoggerPtr logger_abstract_common_factory;
     rmq_configuration_ptr rmq_cfg;
     message_router_configuration_ptr message_router_cfg;
 
