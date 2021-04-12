@@ -112,7 +112,7 @@ private:
 void from_json(const nlohmann::json& j, QueueConfiguration& cfg) {
     //j.at("name").get_to(cfg.name);
     j.at("queue").get_to(cfg.queue);
-    j.at("routing_key").get_to(cfg.routing_key);
+    j.at("name").get_to(cfg.routing_key);
     j.at("exchange").get_to(cfg.exchange);
     j.at("attributes").get_to(cfg.attributes);
 
@@ -128,7 +128,7 @@ void from_json(const nlohmann::json& j, queue_configuration_ptr& cfg) {
 
     //j.at("name").get_to(cfg->name);
     j.at("queue").get_to(cfg->queue);
-    j.at("routing_key").get_to(cfg->routing_key);
+    j.at("name").get_to(cfg->routing_key);
     j.at("exchange").get_to(cfg->exchange);
     j.at("attributes").get_to(cfg->attributes);
 
