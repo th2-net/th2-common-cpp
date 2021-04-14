@@ -35,6 +35,7 @@ namespace th2::common_cpp {
 
 class RabbitRawBatchSender : public AbstractRabbitSender<RawMessageBatch> {
 protected:
+
     ByteVector value_to_bytes(const RawMessageBatch& batch) override {
     	MessageGroupBatch group_batch;
 
