@@ -56,7 +56,7 @@ protected:
         auto size = group_batch.ByteSizeLong();
         bv.resize(size);
 
-        batch.SerializePartialToArray(reinterpret_cast<void*>(bv.data()), size);
+        group_batch.SerializePartialToArray(reinterpret_cast<void*>(bv.data()), size);
 
         return bv;
     }
