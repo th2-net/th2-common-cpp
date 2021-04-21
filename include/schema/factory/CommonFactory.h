@@ -47,9 +47,11 @@ private:
 public:
     CommonFactory() : AbstractCommonFactory() {
     	this->logger_common_factory = log4cxx::Logger::getLogger("CommonFactory");
-	LOG4CXX_DEBUG (logger_common_factory, "Start constructor CommonFactory");  
+    LOG4CXX_DEBUG (logger_common_factory, "Start constructor CommonFactory");
+std::cout << "RABBIT_MQ_FILE_NAME: " << RABBIT_MQ_FILE_NAME << "\n";
         this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME);
-        LOG4CXX_DEBUG (logger_common_factory, "init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)"); 
+        LOG4CXX_DEBUG (logger_common_factory, "init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)");
+std::cout << "ROUTER_MQ_FILE_NAME: " << ROUTER_MQ_FILE_NAME << "\n";
         this->routerMQ = get_path(ROUTER_MQ_FILE_NAME);
         LOG4CXX_DEBUG (logger_common_factory, "init this->routerMQ = get_path(ROUTER_MQ_FILE_NAME)"); 
     }

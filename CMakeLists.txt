@@ -58,5 +58,6 @@ set(INSTALLED_LIBS ${INSTALLED_LIBS} ${PROJECT_NAME}_static)
 if (EXAMPLE)
     add_executable(${PROJECT_NAME}_tests ${HEADERS} main.cpp)
     target_include_directories(${PROJECT_NAME}_tests PRIVATE include ${LIB_SEARCH_PATH}/include)
-    target_link_libraries(${PROJECT_NAME}_tests ${PROJECT_NAME}_static)
+    target_link_libraries(${PROJECT_NAME}_tests PRIVATE log4cxx aprutil-1 apr-1 ${PROJECT_NAME}_static )
 endif()
+
