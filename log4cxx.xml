@@ -16,7 +16,7 @@
     </layout>
     
     <param name="Encoding" value="UTF-16" />
-    <param name="file" value="logfile.log"/>
+    <param name="file" value="log4cxx.log"/>
     <param name="DatePattern" value="'.'yyyy-MM-dd" />
     <param name="append" value="true"/>
   </appender>

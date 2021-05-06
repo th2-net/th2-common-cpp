@@ -16,24 +16,43 @@
 
 #include <iostream>
 
-#include "schema/factory/CommonFactory.h"
+#include <schema/factory/CommonFactory.h>
 
-#include "common.pb.h"
+#include <common.pb.h>
+
+#include <log4cxx/logger.h>
+#include <log4cxx/xml/domconfigurator.h>
+#include <log4cxx/propertyconfigurator.h>
+#include <log4cxx/helpers/properties.h>
 
 int main(int argc, char* argv[]) {
 
     using namespace th2;
     using namespace th2::common_cpp;
-
+    
+    //Define logger variable
+    log4cxx::LoggerPtr loggerMain(log4cxx::Logger::getLogger("main"));
+    //Load XML configuration file using DOMConfigurator
+    log4cxx::xml::DOMConfigurator::configure("log4cxx.xml");
+    setenv("main", "log4cxx.log", true);
+    log4cxx::PropertyConfigurator::configure("log4cxx.properties");
+    LOG4CXX_INFO (loggerMain, "---start main()---");
+    
     auto factory = argc > 1 ? std::make_unique<CommonFactory>(CommonFactory::create_from_arguments(argc, argv))
                             : std::make_unique<CommonFactory>();
+                            
+    LOG4CXX_INFO (loggerMain, "auto factory is initialized. argc = " << argc);
 
     factory->init();
+    
+    LOG4CXX_INFO (loggerMain, "factory->init() successful");
+
 
     std::cout << "Sending raw messages" << std::endl;
 
     {
         auto raw_router = factory->get_message_router_raw_batch();
+        LOG4CXX_DEBUG (loggerMain, "auto raw_router = factory->get_message_router_raw_batch()");
 
         constexpr size_t batch_total = 10;
         for (size_t i = 0; i < batch_total; ++i) {
@@ -78,6 +97,7 @@ int main(int argc, char* argv[]) {
 
 //            raw_router->sendAll(batch, attr);
             raw_router->send(batch);
+            LOG4CXX_DEBUG (loggerMain, "raw_router->send(batch)");
         }
     }
 
@@ -85,7 +105,7 @@ int main(int argc, char* argv[]) {
 
     {
         auto event_router = factory->get_event_batch_router();
-
+        LOG4CXX_DEBUG (loggerMain, "auto event_router = factory->get_event_batch_router()");
         constexpr size_t batch_total = 10;
         for (size_t i = 0; i < batch_total; ++i) {
             EventBatch event_batch;
@@ -109,6 +129,7 @@ int main(int argc, char* argv[]) {
             event_id.set_id("ex_event");
 
             event_router->send(event_batch);
+            LOG4CXX_DEBUG (loggerMain, "event_router->send(event_batch)");
         }
     }
 
@@ -116,7 +137,7 @@ int main(int argc, char* argv[]) {
 
     {
         auto group_router = factory->get_message_router_message_group_batch();
-
+        LOG4CXX_DEBUG (loggerMain, "auto group_router = factory->get_message_router_message_group_batch()");
         constexpr size_t batch_total = 10;
         for (size_t i = 0; i < batch_total; ++i) {
             MessageGroupBatch batch;
@@ -158,10 +179,11 @@ int main(int argc, char* argv[]) {
             attr.emplace_back("store");
 
             group_router->send(batch);
+            LOG4CXX_DEBUG (loggerMain, "group_router->send(batch)");
         }
     }
 
     std::cout << "Finished" << std::endl;
-
+    LOG4CXX_INFO (loggerMain, "---end main()---");
     return 0;
 }
