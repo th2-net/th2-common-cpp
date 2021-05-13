@@ -20,6 +20,9 @@
 
 #include "schema/factory/AbstractCommonFactory.h"
 
+//LOGGING
+#include <log4cxx/logger.h>
+
 namespace th2::common_cpp {
 
 class CommonFactory : public AbstractCommonFactory {
@@ -40,11 +43,17 @@ private:
     std::filesystem::path custom;
     std::filesystem::path prometheus;
     std::filesystem::path dictionariesDir;
+    
+    //logging
+    log4cxx::LoggerPtr logger = log4cxx::Logger::getRootLogger();
 
 public:
     CommonFactory() : AbstractCommonFactory() {
+	LOG4CXX_DEBUG (logger, "[CommonFactory]Start constructor CommonFactory");  
         this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME);
+        LOG4CXX_DEBUG (logger, "[CommonFactory]init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)"); 
         this->routerMQ = get_path(ROUTER_MQ_FILE_NAME);
+        LOG4CXX_DEBUG (logger, "[CommonFactory]init this->routerMQ = get_path(ROUTER_MQ_FILE_NAME)"); 
     }
 
     CommonFactory(std::filesystem::path rabbitMQ,
