@@ -52,13 +52,16 @@ struct TableStruct_common_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[26]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[29]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_common_2eproto;
+class AnyMessage;
+class AnyMessageDefaultTypeInternal;
+extern AnyMessageDefaultTypeInternal _AnyMessage_default_instance_;
 class Checkpoint;
 class CheckpointDefaultTypeInternal;
 extern CheckpointDefaultTypeInternal _Checkpoint_default_instance_;
@@ -104,6 +107,12 @@ extern MessageFilterDefaultTypeInternal _MessageFilter_default_instance_;
 class MessageFilter_FieldsEntry_DoNotUse;
 class MessageFilter_FieldsEntry_DoNotUseDefaultTypeInternal;
 extern MessageFilter_FieldsEntry_DoNotUseDefaultTypeInternal _MessageFilter_FieldsEntry_DoNotUse_default_instance_;
+class MessageGroup;
+class MessageGroupDefaultTypeInternal;
+extern MessageGroupDefaultTypeInternal _MessageGroup_default_instance_;
+class MessageGroupBatch;
+class MessageGroupBatchDefaultTypeInternal;
+extern MessageGroupBatchDefaultTypeInternal _MessageGroupBatch_default_instance_;
 class MessageID;
 class MessageIDDefaultTypeInternal;
 extern MessageIDDefaultTypeInternal _MessageID_default_instance_;
@@ -138,6 +147,7 @@ class ValueFilter;
 class ValueFilterDefaultTypeInternal;
 extern ValueFilterDefaultTypeInternal _ValueFilter_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
+template<> ::AnyMessage* Arena::CreateMaybeMessage<::AnyMessage>(Arena*);
 template<> ::Checkpoint* Arena::CreateMaybeMessage<::Checkpoint>(Arena*);
 template<> ::Checkpoint_DirectionCheckpoint* Arena::CreateMaybeMessage<::Checkpoint_DirectionCheckpoint>(Arena*);
 template<> ::Checkpoint_DirectionCheckpoint_DirectionToSequenceEntry_DoNotUse* Arena::CreateMaybeMessage<::Checkpoint_DirectionCheckpoint_DirectionToSequenceEntry_DoNotUse>(Arena*);
@@ -153,6 +163,8 @@ template<> ::Message* Arena::CreateMaybeMessage<::Message>(Arena*);
 template<> ::MessageBatch* Arena::CreateMaybeMessage<::MessageBatch>(Arena*);
 template<> ::MessageFilter* Arena::CreateMaybeMessage<::MessageFilter>(Arena*);
 template<> ::MessageFilter_FieldsEntry_DoNotUse* Arena::CreateMaybeMessage<::MessageFilter_FieldsEntry_DoNotUse>(Arena*);
+template<> ::MessageGroup* Arena::CreateMaybeMessage<::MessageGroup>(Arena*);
+template<> ::MessageGroupBatch* Arena::CreateMaybeMessage<::MessageGroupBatch>(Arena*);
 template<> ::MessageID* Arena::CreateMaybeMessage<::MessageID>(Arena*);
 template<> ::MessageMetadata* Arena::CreateMaybeMessage<::MessageMetadata>(Arena*);
 template<> ::MessageMetadata_PropertiesEntry_DoNotUse* Arena::CreateMaybeMessage<::MessageMetadata_PropertiesEntry_DoNotUse>(Arena*);
@@ -561,10 +573,33 @@ class MessageID :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kSubsequenceFieldNumber = 4,
     kConnectionIdFieldNumber = 1,
     kSequenceFieldNumber = 3,
     kDirectionFieldNumber = 2,
   };
+  // repeated uint32 subsequence = 4;
+  int subsequence_size() const;
+  private:
+  int _internal_subsequence_size() const;
+  public:
+  void clear_subsequence();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_subsequence(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      _internal_subsequence() const;
+  void _internal_add_subsequence(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      _internal_mutable_subsequence();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::uint32 subsequence(int index) const;
+  void set_subsequence(int index, ::PROTOBUF_NAMESPACE_ID::uint32 value);
+  void add_subsequence(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      subsequence() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      mutable_subsequence();
+
   // .ConnectionID connection_id = 1;
   bool has_connection_id() const;
   private:
@@ -603,6 +638,8 @@ class MessageID :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 > subsequence_;
+  mutable std::atomic<int> _subsequence_cached_byte_size_;
   ::ConnectionID* connection_id_;
   ::PROTOBUF_NAMESPACE_ID::int64 sequence_;
   int direction_;
@@ -754,6 +791,7 @@ class MessageMetadata :
   enum : int {
     kPropertiesFieldNumber = 4,
     kMessageTypeFieldNumber = 3,
+    kProtocolFieldNumber = 5,
     kIdFieldNumber = 1,
     kTimestampFieldNumber = 2,
   };
@@ -788,6 +826,22 @@ class MessageMetadata :
   const std::string& _internal_message_type() const;
   void _internal_set_message_type(const std::string& value);
   std::string* _internal_mutable_message_type();
+  public:
+
+  // string protocol = 5;
+  void clear_protocol();
+  const std::string& protocol() const;
+  void set_protocol(const std::string& value);
+  void set_protocol(std::string&& value);
+  void set_protocol(const char* value);
+  void set_protocol(const char* value, size_t size);
+  std::string* mutable_protocol();
+  std::string* release_protocol();
+  void set_allocated_protocol(std::string* protocol);
+  private:
+  const std::string& _internal_protocol() const;
+  void _internal_set_protocol(const std::string& value);
+  std::string* _internal_mutable_protocol();
   public:
 
   // .MessageID id = 1;
@@ -832,6 +886,7 @@ class MessageMetadata :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       0 > properties_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr protocol_;
   ::MessageID* id_;
   PROTOBUF_NAMESPACE_ID::Timestamp* timestamp_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -981,6 +1036,7 @@ class RawMessageMetadata :
 
   enum : int {
     kPropertiesFieldNumber = 3,
+    kProtocolFieldNumber = 4,
     kIdFieldNumber = 1,
     kTimestampFieldNumber = 2,
   };
@@ -1000,6 +1056,22 @@ class RawMessageMetadata :
       properties() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
       mutable_properties();
+
+  // string protocol = 4;
+  void clear_protocol();
+  const std::string& protocol() const;
+  void set_protocol(const std::string& value);
+  void set_protocol(std::string&& value);
+  void set_protocol(const char* value);
+  void set_protocol(const char* value, size_t size);
+  std::string* mutable_protocol();
+  std::string* release_protocol();
+  void set_allocated_protocol(std::string* protocol);
+  private:
+  const std::string& _internal_protocol() const;
+  void _internal_set_protocol(const std::string& value);
+  std::string* _internal_mutable_protocol();
+  public:
 
   // .MessageID id = 1;
   bool has_id() const;
@@ -1042,6 +1114,7 @@ class RawMessageMetadata :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       0 > properties_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr protocol_;
   ::MessageID* id_;
   PROTOBUF_NAMESPACE_ID::Timestamp* timestamp_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1754,6 +1827,312 @@ class RawMessage :
 };
 // -------------------------------------------------------------------
 
+class AnyMessage :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AnyMessage) */ {
+ public:
+  AnyMessage();
+  virtual ~AnyMessage();
+
+  AnyMessage(const AnyMessage& from);
+  AnyMessage(AnyMessage&& from) noexcept
+    : AnyMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline AnyMessage& operator=(const AnyMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AnyMessage& operator=(AnyMessage&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AnyMessage& default_instance();
+
+  enum KindCase {
+    kMessage = 1,
+    kRawMessage = 2,
+    KIND_NOT_SET = 0,
+  };
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AnyMessage* internal_default_instance() {
+    return reinterpret_cast<const AnyMessage*>(
+               &_AnyMessage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(AnyMessage& a, AnyMessage& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AnyMessage* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AnyMessage* New() const final {
+    return CreateMaybeMessage<AnyMessage>(nullptr);
+  }
+
+  AnyMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AnyMessage>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AnyMessage& from);
+  void MergeFrom(const AnyMessage& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AnyMessage* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AnyMessage";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_common_2eproto);
+    return ::descriptor_table_common_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 1,
+    kRawMessageFieldNumber = 2,
+  };
+  // .Message message = 1;
+  bool has_message() const;
+  private:
+  bool _internal_has_message() const;
+  public:
+  void clear_message();
+  const ::Message& message() const;
+  ::Message* release_message();
+  ::Message* mutable_message();
+  void set_allocated_message(::Message* message);
+  private:
+  const ::Message& _internal_message() const;
+  ::Message* _internal_mutable_message();
+  public:
+
+  // .RawMessage raw_message = 2;
+  bool has_raw_message() const;
+  private:
+  bool _internal_has_raw_message() const;
+  public:
+  void clear_raw_message();
+  const ::RawMessage& raw_message() const;
+  ::RawMessage* release_raw_message();
+  ::RawMessage* mutable_raw_message();
+  void set_allocated_raw_message(::RawMessage* raw_message);
+  private:
+  const ::RawMessage& _internal_raw_message() const;
+  ::RawMessage* _internal_mutable_raw_message();
+  public:
+
+  void clear_kind();
+  KindCase kind_case() const;
+  // @@protoc_insertion_point(class_scope:AnyMessage)
+ private:
+  class _Internal;
+  void set_has_message();
+  void set_has_raw_message();
+
+  inline bool has_kind() const;
+  inline void clear_has_kind();
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  union KindUnion {
+    KindUnion() {}
+    ::Message* message_;
+    ::RawMessage* raw_message_;
+  } kind_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
+
+  friend struct ::TableStruct_common_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MessageGroup :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MessageGroup) */ {
+ public:
+  MessageGroup();
+  virtual ~MessageGroup();
+
+  MessageGroup(const MessageGroup& from);
+  MessageGroup(MessageGroup&& from) noexcept
+    : MessageGroup() {
+    *this = ::std::move(from);
+  }
+
+  inline MessageGroup& operator=(const MessageGroup& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MessageGroup& operator=(MessageGroup&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MessageGroup& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MessageGroup* internal_default_instance() {
+    return reinterpret_cast<const MessageGroup*>(
+               &_MessageGroup_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(MessageGroup& a, MessageGroup& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MessageGroup* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MessageGroup* New() const final {
+    return CreateMaybeMessage<MessageGroup>(nullptr);
+  }
+
+  MessageGroup* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MessageGroup>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MessageGroup& from);
+  void MergeFrom(const MessageGroup& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MessageGroup* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "MessageGroup";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_common_2eproto);
+    return ::descriptor_table_common_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessagesFieldNumber = 1,
+  };
+  // repeated .AnyMessage messages = 1;
+  int messages_size() const;
+  private:
+  int _internal_messages_size() const;
+  public:
+  void clear_messages();
+  ::AnyMessage* mutable_messages(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AnyMessage >*
+      mutable_messages();
+  private:
+  const ::AnyMessage& _internal_messages(int index) const;
+  ::AnyMessage* _internal_add_messages();
+  public:
+  const ::AnyMessage& messages(int index) const;
+  ::AnyMessage* add_messages();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AnyMessage >&
+      messages() const;
+
+  // @@protoc_insertion_point(class_scope:MessageGroup)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AnyMessage > messages_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MessageBatch :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MessageBatch) */ {
  public:
@@ -1796,7 +2175,7 @@ class MessageBatch :
                &_MessageBatch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(MessageBatch& a, MessageBatch& b) {
     a.Swap(&b);
@@ -1933,7 +2312,7 @@ class RawMessageBatch :
                &_RawMessageBatch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(RawMessageBatch& a, RawMessageBatch& b) {
     a.Swap(&b);
@@ -2028,6 +2407,143 @@ class RawMessageBatch :
 };
 // -------------------------------------------------------------------
 
+class MessageGroupBatch :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MessageGroupBatch) */ {
+ public:
+  MessageGroupBatch();
+  virtual ~MessageGroupBatch();
+
+  MessageGroupBatch(const MessageGroupBatch& from);
+  MessageGroupBatch(MessageGroupBatch&& from) noexcept
+    : MessageGroupBatch() {
+    *this = ::std::move(from);
+  }
+
+  inline MessageGroupBatch& operator=(const MessageGroupBatch& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MessageGroupBatch& operator=(MessageGroupBatch&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MessageGroupBatch& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MessageGroupBatch* internal_default_instance() {
+    return reinterpret_cast<const MessageGroupBatch*>(
+               &_MessageGroupBatch_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(MessageGroupBatch& a, MessageGroupBatch& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MessageGroupBatch* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MessageGroupBatch* New() const final {
+    return CreateMaybeMessage<MessageGroupBatch>(nullptr);
+  }
+
+  MessageGroupBatch* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MessageGroupBatch>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MessageGroupBatch& from);
+  void MergeFrom(const MessageGroupBatch& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MessageGroupBatch* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "MessageGroupBatch";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_common_2eproto);
+    return ::descriptor_table_common_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGroupsFieldNumber = 1,
+  };
+  // repeated .MessageGroup groups = 1;
+  int groups_size() const;
+  private:
+  int _internal_groups_size() const;
+  public:
+  void clear_groups();
+  ::MessageGroup* mutable_groups(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::MessageGroup >*
+      mutable_groups();
+  private:
+  const ::MessageGroup& _internal_groups(int index) const;
+  ::MessageGroup* _internal_add_groups();
+  public:
+  const ::MessageGroup& groups(int index) const;
+  ::MessageGroup* add_groups();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::MessageGroup >&
+      groups() const;
+
+  // @@protoc_insertion_point(class_scope:MessageGroupBatch)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::MessageGroup > groups_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RequestStatus :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:RequestStatus) */ {
  public:
@@ -2070,7 +2586,7 @@ class RequestStatus :
                &_RequestStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    16;
 
   friend void swap(RequestStatus& a, RequestStatus& b) {
     a.Swap(&b);
@@ -2246,7 +2762,7 @@ class ComparisonSettings :
                &_ComparisonSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    17;
 
   friend void swap(ComparisonSettings& a, ComparisonSettings& b) {
     a.Swap(&b);
@@ -2407,7 +2923,7 @@ class ValueFilter :
                &_ValueFilter_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    18;
 
   friend void swap(ValueFilter& a, ValueFilter& b) {
     a.Swap(&b);
@@ -2614,7 +3130,7 @@ class ListValueFilter :
                &_ListValueFilter_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    19;
 
   friend void swap(ListValueFilter& a, ListValueFilter& b) {
     a.Swap(&b);
@@ -2733,7 +3249,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_common_2eproto);
-    return ::descriptor_table_common_2eproto.file_level_metadata[17];
+    return ::descriptor_table_common_2eproto.file_level_metadata[20];
   }
 
   public:
@@ -2783,7 +3299,7 @@ class MessageFilter :
                &_MessageFilter_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    21;
 
   friend void swap(MessageFilter& a, MessageFilter& b) {
     a.Swap(&b);
@@ -2960,7 +3476,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_common_2eproto);
-    return ::descriptor_table_common_2eproto.file_level_metadata[19];
+    return ::descriptor_table_common_2eproto.file_level_metadata[22];
   }
 
   public:
@@ -2990,7 +3506,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_common_2eproto);
-    return ::descriptor_table_common_2eproto.file_level_metadata[20];
+    return ::descriptor_table_common_2eproto.file_level_metadata[23];
   }
 
   public:
@@ -3040,7 +3556,7 @@ class Checkpoint_DirectionCheckpoint :
                &_Checkpoint_DirectionCheckpoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    24;
 
   friend void swap(Checkpoint_DirectionCheckpoint& a, Checkpoint_DirectionCheckpoint& b) {
     a.Swap(&b);
@@ -3182,7 +3698,7 @@ class Checkpoint :
                &_Checkpoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    25;
 
   friend void swap(Checkpoint& a, Checkpoint& b) {
     a.Swap(&b);
@@ -3343,7 +3859,7 @@ class EventID :
                &_EventID_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    26;
 
   friend void swap(EventID& a, EventID& b) {
     a.Swap(&b);
@@ -3478,7 +3994,7 @@ class Event :
                &_Event_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    27;
 
   friend void swap(Event& a, Event& b) {
     a.Swap(&b);
@@ -3748,7 +4264,7 @@ class EventBatch :
                &_EventBatch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    28;
 
   friend void swap(EventBatch& a, EventBatch& b) {
     a.Swap(&b);
@@ -4033,6 +4549,53 @@ inline void MessageID::set_sequence(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:MessageID.sequence)
 }
 
+// repeated uint32 subsequence = 4;
+inline int MessageID::_internal_subsequence_size() const {
+  return subsequence_.size();
+}
+inline int MessageID::subsequence_size() const {
+  return _internal_subsequence_size();
+}
+inline void MessageID::clear_subsequence() {
+  subsequence_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 MessageID::_internal_subsequence(int index) const {
+  return subsequence_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 MessageID::subsequence(int index) const {
+  // @@protoc_insertion_point(field_get:MessageID.subsequence)
+  return _internal_subsequence(index);
+}
+inline void MessageID::set_subsequence(int index, ::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  subsequence_.Set(index, value);
+  // @@protoc_insertion_point(field_set:MessageID.subsequence)
+}
+inline void MessageID::_internal_add_subsequence(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  subsequence_.Add(value);
+}
+inline void MessageID::add_subsequence(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_add_subsequence(value);
+  // @@protoc_insertion_point(field_add:MessageID.subsequence)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >&
+MessageID::_internal_subsequence() const {
+  return subsequence_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >&
+MessageID::subsequence() const {
+  // @@protoc_insertion_point(field_list:MessageID.subsequence)
+  return _internal_subsequence();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >*
+MessageID::_internal_mutable_subsequence() {
+  return &subsequence_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint32 >*
+MessageID::mutable_subsequence() {
+  // @@protoc_insertion_point(field_mutable_list:MessageID.subsequence)
+  return _internal_mutable_subsequence();
+}
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -4243,6 +4806,66 @@ MessageMetadata::mutable_properties() {
   return _internal_mutable_properties();
 }
 
+// string protocol = 5;
+inline void MessageMetadata::clear_protocol() {
+  protocol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& MessageMetadata::protocol() const {
+  // @@protoc_insertion_point(field_get:MessageMetadata.protocol)
+  return _internal_protocol();
+}
+inline void MessageMetadata::set_protocol(const std::string& value) {
+  _internal_set_protocol(value);
+  // @@protoc_insertion_point(field_set:MessageMetadata.protocol)
+}
+inline std::string* MessageMetadata::mutable_protocol() {
+  // @@protoc_insertion_point(field_mutable:MessageMetadata.protocol)
+  return _internal_mutable_protocol();
+}
+inline const std::string& MessageMetadata::_internal_protocol() const {
+  return protocol_.GetNoArena();
+}
+inline void MessageMetadata::_internal_set_protocol(const std::string& value) {
+  
+  protocol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void MessageMetadata::set_protocol(std::string&& value) {
+  
+  protocol_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:MessageMetadata.protocol)
+}
+inline void MessageMetadata::set_protocol(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  protocol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:MessageMetadata.protocol)
+}
+inline void MessageMetadata::set_protocol(const char* value, size_t size) {
+  
+  protocol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:MessageMetadata.protocol)
+}
+inline std::string* MessageMetadata::_internal_mutable_protocol() {
+  
+  return protocol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* MessageMetadata::release_protocol() {
+  // @@protoc_insertion_point(field_release:MessageMetadata.protocol)
+  
+  return protocol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void MessageMetadata::set_allocated_protocol(std::string* protocol) {
+  if (protocol != nullptr) {
+    
+  } else {
+    
+  }
+  protocol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), protocol);
+  // @@protoc_insertion_point(field_set_allocated:MessageMetadata.protocol)
+}
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -4391,6 +5014,66 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
 RawMessageMetadata::mutable_properties() {
   // @@protoc_insertion_point(field_mutable_map:RawMessageMetadata.properties)
   return _internal_mutable_properties();
+}
+
+// string protocol = 4;
+inline void RawMessageMetadata::clear_protocol() {
+  protocol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RawMessageMetadata::protocol() const {
+  // @@protoc_insertion_point(field_get:RawMessageMetadata.protocol)
+  return _internal_protocol();
+}
+inline void RawMessageMetadata::set_protocol(const std::string& value) {
+  _internal_set_protocol(value);
+  // @@protoc_insertion_point(field_set:RawMessageMetadata.protocol)
+}
+inline std::string* RawMessageMetadata::mutable_protocol() {
+  // @@protoc_insertion_point(field_mutable:RawMessageMetadata.protocol)
+  return _internal_mutable_protocol();
+}
+inline const std::string& RawMessageMetadata::_internal_protocol() const {
+  return protocol_.GetNoArena();
+}
+inline void RawMessageMetadata::_internal_set_protocol(const std::string& value) {
+  
+  protocol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RawMessageMetadata::set_protocol(std::string&& value) {
+  
+  protocol_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:RawMessageMetadata.protocol)
+}
+inline void RawMessageMetadata::set_protocol(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  protocol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:RawMessageMetadata.protocol)
+}
+inline void RawMessageMetadata::set_protocol(const char* value, size_t size) {
+  
+  protocol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:RawMessageMetadata.protocol)
+}
+inline std::string* RawMessageMetadata::_internal_mutable_protocol() {
+  
+  return protocol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RawMessageMetadata::release_protocol() {
+  // @@protoc_insertion_point(field_release:RawMessageMetadata.protocol)
+  
+  return protocol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RawMessageMetadata::set_allocated_protocol(std::string* protocol) {
+  if (protocol != nullptr) {
+    
+  } else {
+    
+  }
+  protocol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), protocol);
+  // @@protoc_insertion_point(field_set_allocated:RawMessageMetadata.protocol)
 }
 
 // -------------------------------------------------------------------
@@ -4963,6 +5646,162 @@ inline void RawMessage::set_allocated_body(std::string* body) {
 
 // -------------------------------------------------------------------
 
+// AnyMessage
+
+// .Message message = 1;
+inline bool AnyMessage::_internal_has_message() const {
+  return kind_case() == kMessage;
+}
+inline bool AnyMessage::has_message() const {
+  return _internal_has_message();
+}
+inline void AnyMessage::set_has_message() {
+  _oneof_case_[0] = kMessage;
+}
+inline void AnyMessage::clear_message() {
+  if (_internal_has_message()) {
+    delete kind_.message_;
+    clear_has_kind();
+  }
+}
+inline ::Message* AnyMessage::release_message() {
+  // @@protoc_insertion_point(field_release:AnyMessage.message)
+  if (_internal_has_message()) {
+    clear_has_kind();
+      ::Message* temp = kind_.message_;
+    kind_.message_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::Message& AnyMessage::_internal_message() const {
+  return _internal_has_message()
+      ? *kind_.message_
+      : *reinterpret_cast< ::Message*>(&::_Message_default_instance_);
+}
+inline const ::Message& AnyMessage::message() const {
+  // @@protoc_insertion_point(field_get:AnyMessage.message)
+  return _internal_message();
+}
+inline ::Message* AnyMessage::_internal_mutable_message() {
+  if (!_internal_has_message()) {
+    clear_kind();
+    set_has_message();
+    kind_.message_ = CreateMaybeMessage< ::Message >(
+        GetArenaNoVirtual());
+  }
+  return kind_.message_;
+}
+inline ::Message* AnyMessage::mutable_message() {
+  // @@protoc_insertion_point(field_mutable:AnyMessage.message)
+  return _internal_mutable_message();
+}
+
+// .RawMessage raw_message = 2;
+inline bool AnyMessage::_internal_has_raw_message() const {
+  return kind_case() == kRawMessage;
+}
+inline bool AnyMessage::has_raw_message() const {
+  return _internal_has_raw_message();
+}
+inline void AnyMessage::set_has_raw_message() {
+  _oneof_case_[0] = kRawMessage;
+}
+inline void AnyMessage::clear_raw_message() {
+  if (_internal_has_raw_message()) {
+    delete kind_.raw_message_;
+    clear_has_kind();
+  }
+}
+inline ::RawMessage* AnyMessage::release_raw_message() {
+  // @@protoc_insertion_point(field_release:AnyMessage.raw_message)
+  if (_internal_has_raw_message()) {
+    clear_has_kind();
+      ::RawMessage* temp = kind_.raw_message_;
+    kind_.raw_message_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::RawMessage& AnyMessage::_internal_raw_message() const {
+  return _internal_has_raw_message()
+      ? *kind_.raw_message_
+      : *reinterpret_cast< ::RawMessage*>(&::_RawMessage_default_instance_);
+}
+inline const ::RawMessage& AnyMessage::raw_message() const {
+  // @@protoc_insertion_point(field_get:AnyMessage.raw_message)
+  return _internal_raw_message();
+}
+inline ::RawMessage* AnyMessage::_internal_mutable_raw_message() {
+  if (!_internal_has_raw_message()) {
+    clear_kind();
+    set_has_raw_message();
+    kind_.raw_message_ = CreateMaybeMessage< ::RawMessage >(
+        GetArenaNoVirtual());
+  }
+  return kind_.raw_message_;
+}
+inline ::RawMessage* AnyMessage::mutable_raw_message() {
+  // @@protoc_insertion_point(field_mutable:AnyMessage.raw_message)
+  return _internal_mutable_raw_message();
+}
+
+inline bool AnyMessage::has_kind() const {
+  return kind_case() != KIND_NOT_SET;
+}
+inline void AnyMessage::clear_has_kind() {
+  _oneof_case_[0] = KIND_NOT_SET;
+}
+inline AnyMessage::KindCase AnyMessage::kind_case() const {
+  return AnyMessage::KindCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// MessageGroup
+
+// repeated .AnyMessage messages = 1;
+inline int MessageGroup::_internal_messages_size() const {
+  return messages_.size();
+}
+inline int MessageGroup::messages_size() const {
+  return _internal_messages_size();
+}
+inline void MessageGroup::clear_messages() {
+  messages_.Clear();
+}
+inline ::AnyMessage* MessageGroup::mutable_messages(int index) {
+  // @@protoc_insertion_point(field_mutable:MessageGroup.messages)
+  return messages_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AnyMessage >*
+MessageGroup::mutable_messages() {
+  // @@protoc_insertion_point(field_mutable_list:MessageGroup.messages)
+  return &messages_;
+}
+inline const ::AnyMessage& MessageGroup::_internal_messages(int index) const {
+  return messages_.Get(index);
+}
+inline const ::AnyMessage& MessageGroup::messages(int index) const {
+  // @@protoc_insertion_point(field_get:MessageGroup.messages)
+  return _internal_messages(index);
+}
+inline ::AnyMessage* MessageGroup::_internal_add_messages() {
+  return messages_.Add();
+}
+inline ::AnyMessage* MessageGroup::add_messages() {
+  // @@protoc_insertion_point(field_add:MessageGroup.messages)
+  return _internal_add_messages();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AnyMessage >&
+MessageGroup::messages() const {
+  // @@protoc_insertion_point(field_list:MessageGroup.messages)
+  return messages_;
+}
+
+// -------------------------------------------------------------------
+
 // MessageBatch
 
 // repeated .Message messages = 1;
@@ -5045,6 +5884,49 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::RawMessage >&
 RawMessageBatch::messages() const {
   // @@protoc_insertion_point(field_list:RawMessageBatch.messages)
   return messages_;
+}
+
+// -------------------------------------------------------------------
+
+// MessageGroupBatch
+
+// repeated .MessageGroup groups = 1;
+inline int MessageGroupBatch::_internal_groups_size() const {
+  return groups_.size();
+}
+inline int MessageGroupBatch::groups_size() const {
+  return _internal_groups_size();
+}
+inline void MessageGroupBatch::clear_groups() {
+  groups_.Clear();
+}
+inline ::MessageGroup* MessageGroupBatch::mutable_groups(int index) {
+  // @@protoc_insertion_point(field_mutable:MessageGroupBatch.groups)
+  return groups_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::MessageGroup >*
+MessageGroupBatch::mutable_groups() {
+  // @@protoc_insertion_point(field_mutable_list:MessageGroupBatch.groups)
+  return &groups_;
+}
+inline const ::MessageGroup& MessageGroupBatch::_internal_groups(int index) const {
+  return groups_.Get(index);
+}
+inline const ::MessageGroup& MessageGroupBatch::groups(int index) const {
+  // @@protoc_insertion_point(field_get:MessageGroupBatch.groups)
+  return _internal_groups(index);
+}
+inline ::MessageGroup* MessageGroupBatch::_internal_add_groups() {
+  return groups_.Add();
+}
+inline ::MessageGroup* MessageGroupBatch::add_groups() {
+  // @@protoc_insertion_point(field_add:MessageGroupBatch.groups)
+  return _internal_add_groups();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::MessageGroup >&
+MessageGroupBatch::groups() const {
+  // @@protoc_insertion_point(field_list:MessageGroupBatch.groups)
+  return groups_;
 }
 
 // -------------------------------------------------------------------
@@ -6511,6 +7393,12 @@ EventBatch::events() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
