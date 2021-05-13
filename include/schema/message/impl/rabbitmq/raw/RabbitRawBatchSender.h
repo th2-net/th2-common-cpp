@@ -21,16 +21,42 @@
 #include "common.pb.h"
 
 namespace th2::common_cpp {
+/*
+    var batchBuilder = MessageGroupBatch.newBuilder();
+
+    for (var rawMessage : value.getMessagesList()) {
+        var anyMessage = AnyMessage.newBuilder().setRawMessage(rawMessage).build();
+        var group = MessageGroup.newBuilder().addMessages(anyMessage).build();
+        batchBuilder.addGroups(group);
+    }
+
+    return batchBuilder.build().toByteArray();
+	*/
 
 class RabbitRawBatchSender : public AbstractRabbitSender<RawMessageBatch> {
 protected:
+
     ByteVector value_to_bytes(const RawMessageBatch& batch) override {
+    	MessageGroupBatch group_batch;
+
+    	for (auto&& raw_msg: batch.messages()) {
+    		AnyMessage any_msg;
+
+    		any_msg.mutable_raw_message()->CopyFrom(raw_msg);
+
+    		MessageGroup group_msg;
+
+    		group_msg.mutable_messages()->Add()->CopyFrom(any_msg);
+
+    		group_batch.mutable_groups()->Add()->CopyFrom(group_msg);
+    	}
+
         ByteVector bv;
 
-        auto size = batch.ByteSizeLong();
+        auto size = group_batch.ByteSizeLong();
         bv.resize(size);
 
-        batch.SerializePartialToArray(reinterpret_cast<void*>(bv.data()), size);
+        group_batch.SerializePartialToArray(reinterpret_cast<void*>(bv.data()), size);
 
         return bv;
     }
