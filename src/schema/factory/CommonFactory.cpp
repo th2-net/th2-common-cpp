@@ -21,7 +21,9 @@
 namespace th2::common_cpp {
 
 std::filesystem::path CommonFactory::get_path(const std::string_view file) const {
+std::cout << "path: " << CONFIG_DEFAULT_PATH.c_str() << "\\" << file << "\n";
     auto path = CONFIG_DEFAULT_PATH / file;
+std::cout << "path: " << path.c_str() << "\n";
 
     if (!std::filesystem::exists(path)) {
         std::cout << "File [" << path << "] is not found " << std::endl;

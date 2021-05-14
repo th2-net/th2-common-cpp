@@ -26,6 +26,9 @@
 #include "schema/message/impl/rabbitmq/configuration/RabbitMQConfiguration.h"
 #include "Util.h"
 
+//LOGGING
+#include <log4cxx/logger.h>
+
 namespace th2::common_cpp {
 
 #define AMQP_AUTODELETE		1
@@ -42,14 +45,16 @@ namespace th2::common_cpp {
 
 class ConnectionManager {
 public:
-
     ConnectionManager(rmq_configuration_ptr cfg) {
+    logger_connection_manager = log4cxx::Logger::getLogger("ConnectionManager");
+        LOG4CXX_DEBUG (logger_connection_manager, "Start constructor");
         rmq_configuration = cfg;
         _debug = false;
 
         if (std::getenv("TH2_COMMON_CPP_DEBUG")) {
         	_debug = true;
         }
+        LOG4CXX_INFO (logger_connection_manager, "_debug = "<<_debug);
     }
 
     ~ConnectionManager() {
@@ -57,24 +62,34 @@ public:
 
     void init() {
         if (rmq_configuration->get_subscriberName().empty()) {
+            LOG4CXX_DEBUG (logger_connection_manager, "rmq_configuration->get_subscriberName() is empty()");
             subscriber_name = rmq_configuration->get_subscriberName();
         } else {
+            LOG4CXX_DEBUG (logger_connection_manager, "subscriber_name = 'rabbit_mq_subscriber.'");
             subscriber_name = "rabbit_mq_subscriber."; //TODO implement + System.currentTimeMillis();
         }
 
     	_conn = amqp_new_connection();
-
+	LOG4CXX_DEBUG (logger_connection_manager, "amqp_new_connection() successful");
     	_socket = amqp_tcp_socket_new(_conn);
+    	if (!_socket) {
+		LOG4CXX_ERROR (logger_connection_manager, "amqp_tcp_socket_new(_conn) failed");
+	}
+	else{
+    		LOG4CXX_INFO (logger_connection_manager, "amqp_tcp_socket_new(_conn) successful");
+	}
     	_channel = 0;
 
     	_type = "direct";
 
      	std::cout << "Connecting to amqp://" << rmq_configuration->get_username() << ":" << "***" << "@" << rmq_configuration->get_host() << ":" << rmq_configuration->get_port() << "/" << rmq_configuration->get_vHost() << std::endl;
-
+	LOG4CXX_INFO (logger_connection_manager, "Connecting to amqp://" << rmq_configuration->get_username() << ":" << "***" << "@" << rmq_configuration->get_host() << ":" << rmq_configuration->get_port() << "/" << rmq_configuration->get_vHost());
 
     	_status = amqp_socket_open(_socket, rmq_configuration->get_host().c_str(), std::stoi(rmq_configuration->get_port()));
+    	LOG4CXX_INFO (logger_connection_manager, "amqp_socket_open() returns _status "<<_status);
 
     	if (_status) {
+    		LOG4CXX_ERROR (logger_connection_manager, "RabbitMQ connection failed");
     		throw std::runtime_error("RabbitMQ connection failed");
     	}
 
@@ -82,8 +97,9 @@ public:
     			AMQP_DEFAULT_FRAME_SIZE, 0, AMQP_SASL_METHOD_PLAIN,
 				rmq_configuration->get_username().c_str(),
 				rmq_configuration->get_password().c_str());
-
+	LOG4CXX_INFO (logger_connection_manager, "amqp_login() successful");
     	if (login_status.reply_type != AMQP_RESPONSE_NORMAL) {
+    		LOG4CXX_ERROR (logger_connection_manager, "RabbitMQ login failed");
     		throw std::runtime_error("RabbitMQ login failed");
     	}
 
@@ -91,10 +107,11 @@ public:
    		++_channel;
 
    		amqp_channel_open(_conn, _channel);
-
+		LOG4CXX_INFO (logger_connection_manager, "amqp_channel_open(_conn, _channel) successful");
    		auto rpc_reply_status = amqp_get_rpc_reply(_conn);
-
+		LOG4CXX_INFO (logger_connection_manager, "amqp_get_rpc_reply(_conn) successful");
    		if (rpc_reply_status.reply_type != AMQP_RESPONSE_NORMAL) {
+   		  LOG4CXX_ERROR (logger_connection_manager, "RabbitMQ channel open failed");
    		  throw std::runtime_error("RabbitMQ channel open failed");
    		}
 
@@ -169,6 +186,7 @@ private:
 	int _channel;
 	std::string _type;
 	bool _debug;
+	log4cxx::LoggerPtr logger_connection_manager;
 };
 
 using connection_manager_ptr = std::shared_ptr<ConnectionManager>;
