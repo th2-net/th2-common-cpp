@@ -32,10 +32,9 @@ int main(int argc, char* argv[]) {
     
     //Define logger variable
     log4cxx::LoggerPtr loggerMain(log4cxx::Logger::getLogger("main"));
-    //Load XML configuration file using DOMConfigurator
-    log4cxx::xml::DOMConfigurator::configure("log4cxx.xml");
     setenv("main", "log4cxx.log", true);
-    log4cxx::PropertyConfigurator::configure("log4cxx.properties");
+    log4cxx::PropertyConfigurator::configure("logging-configmap.yaml");
+    
     LOG4CXX_INFO (loggerMain, "---start main()---");
     
     auto factory = argc > 1 ? std::make_unique<CommonFactory>(CommonFactory::create_from_arguments(argc, argv))

@@ -1,44 +1,44 @@
-2021-05-06 15:14:07.557 INFO  (main) - ---start main()---
-2021-05-06 15:14:07.557 DEBUG (CommonFactory) - Start constructor CommonFactory
-2021-05-06 15:14:07.557 DEBUG (CommonFactory) - init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)
-2021-05-06 15:14:07.557 DEBUG (CommonFactory) - init this->routerMQ = get_path(ROUTER_MQ_FILE_NAME)
-2021-05-06 15:14:07.557 INFO  (main) - auto factory is initialized. argc = 1
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - Start init()
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - get_path_to_rmq_configuration() is successful
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - load_rabbit_mq_configuration() is successful
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - rmq_cfg is initialized
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - get_path_to_message_router_configuration() is successful
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - message_router_cfg is initialized
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - Start init() with params
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - message_router_group_batch is created 0x559605ecc338
-2021-05-06 15:14:07.557 DEBUG (ConnectionManager) - Start constructor
-2021-05-06 15:14:07.557 INFO  (ConnectionManager) - _debug = 0
-2021-05-06 15:14:07.557 DEBUG (AbstractCommonFactory) - connection_manager_ptr is created 0x7fffbed41fd0
-2021-05-06 15:14:07.557 DEBUG (ConnectionManager) - subscriber_name = 'rabbit_mq_subscriber.'
-2021-05-06 15:14:07.557 DEBUG (ConnectionManager) - amqp_new_connection() successful
-2021-05-06 15:14:07.557 INFO  (ConnectionManager) - amqp_tcp_socket_new(_conn) successful
-2021-05-06 15:14:07.557 INFO  (ConnectionManager) - Connecting to amqp://rabbitmq:***@127.0.0.1:5672//
-2021-05-06 15:14:07.557 INFO  (ConnectionManager) - amqp_socket_open() returns _status -9
-2021-05-06 15:14:07.557 ERROR (ConnectionManager) - RabbitMQ connection failed
-2021-05-06 15:15:13.044 INFO  (main) - ---start main()---
-2021-05-06 15:15:13.044 DEBUG (CommonFactory) - Start constructor CommonFactory
-2021-05-06 15:15:13.044 DEBUG (CommonFactory) - init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)
-2021-05-06 15:15:13.044 DEBUG (CommonFactory) - init this->routerMQ = get_path(ROUTER_MQ_FILE_NAME)
-2021-05-06 15:15:13.044 INFO  (main) - auto factory is initialized. argc = 1
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - Start init()
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - get_path_to_rmq_configuration() is successful
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - load_rabbit_mq_configuration() is successful
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - rmq_cfg is initialized
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - get_path_to_message_router_configuration() is successful
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - message_router_cfg is initialized
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - Start init() with params
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - message_router_group_batch is created 0x55718eec2338
-2021-05-06 15:15:13.044 DEBUG (ConnectionManager) - Start constructor
-2021-05-06 15:15:13.044 INFO  (ConnectionManager) - _debug = 0
-2021-05-06 15:15:13.044 DEBUG (AbstractCommonFactory) - connection_manager_ptr is created 0x7ffd8279db20
-2021-05-06 15:15:13.044 DEBUG (ConnectionManager) - subscriber_name = 'rabbit_mq_subscriber.'
-2021-05-06 15:15:13.044 DEBUG (ConnectionManager) - amqp_new_connection() successful
-2021-05-06 15:15:13.044 INFO  (ConnectionManager) - amqp_tcp_socket_new(_conn) successful
-2021-05-06 15:15:13.044 INFO  (ConnectionManager) - Connecting to amqp://rabbitmq:***@127.0.0.1:5672//
-2021-05-06 15:15:13.044 INFO  (ConnectionManager) - amqp_socket_open() returns _status -9
-2021-05-06 15:15:13.044 ERROR (ConnectionManager) - RabbitMQ connection failed
+2021-07-02 13:08:45.176 INFO  (main) - ---start main()---
+2021-07-02 13:08:45.176 DEBUG (CommonFactory) - Start constructor CommonFactory
+2021-07-02 13:08:45.176 DEBUG (CommonFactory) - init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)
+2021-07-02 13:08:45.176 DEBUG (CommonFactory) - init this->routerMQ = get_path(ROUTER_MQ_FILE_NAME)
+2021-07-02 13:08:45.176 INFO  (main) - auto factory is initialized. argc = 1
+2021-07-02 13:08:45.176 DEBUG (AbstractCommonFactory) - Start init()
+2021-07-02 13:08:45.176 DEBUG (AbstractCommonFactory) - get_path_to_rmq_configuration() is successful
+2021-07-02 13:08:45.176 DEBUG (AbstractCommonFactory) - load_rabbit_mq_configuration() is successful
+2021-07-02 13:08:45.176 DEBUG (AbstractCommonFactory) - rmq_cfg is initialized
+2021-07-02 13:08:45.176 DEBUG (AbstractCommonFactory) - get_path_to_message_router_configuration() is successful
+2021-07-02 13:08:45.177 DEBUG (AbstractCommonFactory) - message_router_cfg is initialized
+2021-07-02 13:08:45.177 DEBUG (AbstractCommonFactory) - Start init() with params
+2021-07-02 13:08:45.177 DEBUG (AbstractCommonFactory) - message_router_group_batch is created 0x559aae368c38
+2021-07-02 13:08:45.177 DEBUG (ConnectionManager) - Start constructor
+2021-07-02 13:08:45.177 INFO  (ConnectionManager) - _debug = 0
+2021-07-02 13:08:45.177 DEBUG (AbstractCommonFactory) - connection_manager_ptr is created 0x7ffe0a922860
+2021-07-02 13:08:45.177 DEBUG (ConnectionManager) - rmq_configuration->get_subscriberName() is empty()
+2021-07-02 13:08:45.177 DEBUG (ConnectionManager) - amqp_new_connection() successful
+2021-07-02 13:08:45.177 INFO  (ConnectionManager) - amqp_tcp_socket_new(_conn) successful
+2021-07-02 13:08:45.177 INFO  (ConnectionManager) - Connecting to amqp://th2-user-commonv3:***@rabbitmq-schema-discovery.service.svc.cluster.local:5672/th2-commonv3
+2021-07-02 13:08:45.250 INFO  (ConnectionManager) - amqp_socket_open() returns _status -5
+2021-07-02 13:08:45.250 ERROR (ConnectionManager) - RabbitMQ connection failed
+2021-07-02 13:09:19.400 INFO  (main) - ---start main()---
+2021-07-02 13:09:19.400 DEBUG (CommonFactory) - Start constructor CommonFactory
+2021-07-02 13:09:19.400 DEBUG (CommonFactory) - init this->rabbitMQ = get_path(RABBIT_MQ_FILE_NAME)
+2021-07-02 13:09:19.400 DEBUG (CommonFactory) - init this->routerMQ = get_path(ROUTER_MQ_FILE_NAME)
+2021-07-02 13:09:19.400 INFO  (main) - auto factory is initialized. argc = 1
+2021-07-02 13:09:19.400 DEBUG (AbstractCommonFactory) - Start init()
+2021-07-02 13:09:19.400 DEBUG (AbstractCommonFactory) - get_path_to_rmq_configuration() is successful
+2021-07-02 13:09:19.400 DEBUG (AbstractCommonFactory) - load_rabbit_mq_configuration() is successful
+2021-07-02 13:09:19.401 DEBUG (AbstractCommonFactory) - rmq_cfg is initialized
+2021-07-02 13:09:19.401 DEBUG (AbstractCommonFactory) - get_path_to_message_router_configuration() is successful
+2021-07-02 13:09:19.401 DEBUG (AbstractCommonFactory) - message_router_cfg is initialized
+2021-07-02 13:09:19.401 DEBUG (AbstractCommonFactory) - Start init() with params
+2021-07-02 13:09:19.401 DEBUG (AbstractCommonFactory) - message_router_group_batch is created 0x56239abcac38
+2021-07-02 13:09:19.401 DEBUG (ConnectionManager) - Start constructor
+2021-07-02 13:09:19.401 INFO  (ConnectionManager) - _debug = 0
+2021-07-02 13:09:19.401 DEBUG (AbstractCommonFactory) - connection_manager_ptr is created 0x7ffc1d26d190
+2021-07-02 13:09:19.401 DEBUG (ConnectionManager) - rmq_configuration->get_subscriberName() is empty()
+2021-07-02 13:09:19.401 DEBUG (ConnectionManager) - amqp_new_connection() successful
+2021-07-02 13:09:19.401 INFO  (ConnectionManager) - amqp_tcp_socket_new(_conn) successful
+2021-07-02 13:09:19.401 INFO  (ConnectionManager) - Connecting to amqp://th2-user-commonv3:***@rabbitmq-schema-discovery.service.svc.cluster.local:5672/th2-commonv3
+2021-07-02 13:09:19.454 INFO  (ConnectionManager) - amqp_socket_open() returns _status -5
+2021-07-02 13:09:19.454 ERROR (ConnectionManager) - RabbitMQ connection failed
