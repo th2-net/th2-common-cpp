@@ -158,7 +158,7 @@ protected:
     }
 
     [[nodiscard]]
-    connection_manager_ptr get_rmq_connection_manager() const noexcept {
+    connection_manager_ptr get_rmq_connection_manager() const {
         if (!rmq_connection_manager) {
             rmq_connection_manager = create_rmq_connection_manager();
             LOG4CXX_DEBUG (logger_abstract_common_factory, "create_rmq_connection_manager() is successful"); 

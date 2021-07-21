@@ -24,19 +24,29 @@
 #include <log4cxx/xml/domconfigurator.h>
 #include <log4cxx/propertyconfigurator.h>
 #include <log4cxx/helpers/properties.h>
+#include <gnu/libc-version.h>  //for "glibc version"
 
 int main(int argc, char* argv[]) {
 
     using namespace th2;
     using namespace th2::common_cpp;
-    
+    	//Build time: Jul  7 2021 13:41:20
+	//Boost version: 1.74.0
+	//Git branch: itch_service, Hash: Local uncommitted changes.
+	//glibc version: 2.27
+	//g++ version: 10.2
+	//__cplusplus: 201709
     //Define logger variable
     log4cxx::LoggerPtr loggerMain(log4cxx::Logger::getLogger("main"));
-    //Load XML configuration file using DOMConfigurator
-    log4cxx::xml::DOMConfigurator::configure("log4cxx.xml");
     setenv("main", "log4cxx.log", true);
-    log4cxx::PropertyConfigurator::configure("log4cxx.properties");
-    LOG4CXX_INFO (loggerMain, "---start main()---");
+    log4cxx::PropertyConfigurator::configure("logging-configmap.yaml");
+    
+    LOG4CXX_INFO (loggerMain, "---start main()---\nBuild time: "<< __DATE__ <<" "<< __TIME__ << 
+						  "\nBoost version: "<< BOOST_VERSION<< 
+						  "\nGit branch: ???"<<   
+						  "\nglibc version: "<< gnu_get_libc_version() << 
+						  "\ng++ version: "<< __GNUC__ <<"."<<__GNUC_MINOR__<<"."<<__GNUC_PATCHLEVEL__<< 
+						  "\n__cplusplus: "<< __cplusplus);
     
     auto factory = argc > 1 ? std::make_unique<CommonFactory>(CommonFactory::create_from_arguments(argc, argv))
                             : std::make_unique<CommonFactory>();
