@@ -2,13 +2,13 @@
   "queues": {
     "test_queue" : {
       "queue": "test_queue_name",
-      "routing_key": "test_queue_name",
+      "name": "test_queue_name",
       "exchange": "demo_exchange",
       "attributes": ["subscribe", "raw"]
     },
     "output_queue" : {
       "queue": "out_queue_name",
-      "routing_key": "out_queue_name",
+      "name": "out_queue_name",
       "exchange": "demo_exchange",
       "attributes": ["publish", "raw", "event"],
       "filters": [

@@ -54,7 +54,7 @@ public:
         if (std::getenv("TH2_COMMON_CPP_DEBUG")) {
         	_debug = true;
         }
-        LOG4CXX_INFO (logger_connection_manager, "_debug = "<<_debug);
+        LOG4CXX_INFO (logger_connection_manager, "_debug = " << _debug);
     }
 
     ~ConnectionManager() {
@@ -97,7 +97,7 @@ public:
     			AMQP_DEFAULT_FRAME_SIZE, 0, AMQP_SASL_METHOD_PLAIN,
 				rmq_configuration->get_username().c_str(),
 				rmq_configuration->get_password().c_str());
-	LOG4CXX_INFO (logger_connection_manager, "amqp_login() successful");
+        LOG4CXX_INFO (logger_connection_manager, "amqp_login() successful");
     	if (login_status.reply_type != AMQP_RESPONSE_NORMAL) {
     		LOG4CXX_ERROR (logger_connection_manager, "RabbitMQ login failed");
     		throw std::runtime_error("RabbitMQ login failed");
@@ -168,7 +168,7 @@ public:
 
 		send_publish_command(_conn, _channel, exchange.c_str(), message_bytes, routing_key.c_str());
 
-
+        LOG4CXX_DEBUG (logger_connection_manager, "Exchange: " << exchange << ", routing key: " << routing_key << ", send: " << message.size() << " byte(s)");
 		if (_debug) {
 			std::cout << "Exchange: " << exchange << ", routing key: " << routing_key << ", send: " << message.size() << " byte(s)" << std::endl;
 		}

@@ -74,3 +74,624 @@ __cplusplus: 201703
 20 Jul 2021 16:03:30,101 DEBUG (main                     :192 ) - group_router->send(batch)
 20 Jul 2021 16:03:30,101 DEBUG (main                     :192 ) - group_router->send(batch)
 20 Jul 2021 16:03:30,101 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 13:51:58,474 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 13:51:46
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 13:51:58,474 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 13:51:58,474 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 13:51:58,474 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 13:51:58,474 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 13:51:58,474 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 13:51:58,475 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 13:51:58,475 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 13:51:58,475 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 13:51:58,475 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8e2d88
+07 Oct 2021 13:51:58,475 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 13:51:58,475 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 13:51:58,475 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 13:51:58,475 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 13:51:58,475 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 13:51:58,475 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 13:51:58,475 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@127.0.0.1:5672//
+07 Oct 2021 13:51:58,475 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 13:51:58,478 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 13:51:58,478 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 13:51:58,479 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8e2d78
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8e2d68
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8e2d58
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 13:51:58,479 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 13:51:58,479 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 13:51:58,479 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,479 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 13:51:58,480 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:51:58,480 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 13:51:58,480 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 13:51:58,480 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,480 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,481 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,481 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,481 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,481 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,481 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:51:58,481 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 13:53:37,493 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 13:52:38
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 13:53:37,494 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 13:53:37,494 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 13:53:37,494 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 13:53:37,494 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 13:53:37,494 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 13:53:37,494 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 13:56:22,717 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 13:52:38
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 13:56:22,717 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8e2d88
+07 Oct 2021 13:56:22,717 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 13:56:22,717 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 13:56:22,717 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 13:56:22,717 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 13:56:22,717 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 13:56:22,717 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 13:56:22,717 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 13:56:22,717 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 13:56:22,719 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 13:56:22,720 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 13:56:22,720 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 13:56:22,720 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 13:56:22,720 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 13:56:22,720 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 13:56:22,720 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8e2d78
+07 Oct 2021 13:56:22,720 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 13:56:22,720 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8e2d68
+07 Oct 2021 13:56:22,721 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 13:56:22,721 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8e2d58
+07 Oct 2021 13:56:22,721 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 13:56:22,721 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 13:56:22,721 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 13:56:22,721 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 13:56:22,721 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 13:56:22,721 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,721 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 13:56:22,722 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 13:56:22,722 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 13:56:22,722 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 13:56:22,722 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 13:56:22,722 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 13:56:22,723 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 14:00:01,334 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 13:59:49
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 14:00:01,334 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8e2d88
+07 Oct 2021 14:00:01,334 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 14:00:01,334 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 14:00:01,334 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 14:00:01,334 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 14:00:01,334 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 14:00:01,334 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 14:00:01,334 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 14:00:01,334 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 14:00:01,337 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 14:00:01,338 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 14:00:01,338 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8e2d78
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8e2d68
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8e2d58
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 14:00:01,338 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 14:00:01,338 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:00:01,338 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 14:00:01,339 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,339 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,339 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,339 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,339 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,339 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:00:01,340 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:00:01,340 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 14:00:01,340 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,340 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:00:01,341 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:00:01,341 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 14:00:01,341 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,341 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,342 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,342 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,342 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,342 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,342 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:00:01,342 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 14:01:08,937 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 14:00:56
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 14:01:08,937 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8ecd88
+07 Oct 2021 14:01:08,937 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 14:01:08,937 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 14:01:08,937 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 14:01:08,937 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 14:01:08,938 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 14:01:08,938 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 14:01:08,938 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 14:01:08,938 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 14:01:08,941 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 14:01:08,942 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 14:01:08,942 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8ecd78
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8ecd68
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8ecd58
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 14:01:08,942 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 14:01:08,942 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:01:08,942 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 14:01:08,942 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,942 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,942 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,942 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,942 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:01:08,943 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:01:08,943 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,943 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:01:08,944 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:01:08,944 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:01:08,944 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 14:03:20,187 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 14:03:07
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 14:03:20,187 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 14:03:20,187 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 14:03:20,187 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 14:03:20,187 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 14:03:20,188 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 14:03:20,188 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 14:03:20,188 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 14:03:20,188 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 14:03:20,188 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8ecd88
+07 Oct 2021 14:03:20,188 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 14:03:20,188 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 14:03:20,188 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 14:03:20,188 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 14:03:20,188 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 14:03:20,188 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 14:03:20,188 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 14:03:20,189 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 14:03:20,191 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 14:03:20,192 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 14:03:20,192 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8ecd78
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8ecd68
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8ecd58
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 14:03:20,192 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 14:03:20,192 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:03:20,192 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,193 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:03:20,194 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:03:20,194 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:03:20,194 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:03:20,194 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:03:20,195 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 14:05:03,886 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 14:04:51
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 14:05:03,886 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8ebd88
+07 Oct 2021 14:05:03,886 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 14:05:03,886 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 14:05:03,886 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 14:05:03,886 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 14:05:03,886 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 14:05:03,886 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 14:05:03,887 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 14:05:03,888 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 14:05:03,890 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 14:05:03,891 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 14:05:03,891 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8ebd78
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8ebd68
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8ebd58
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 14:05:03,891 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 14:05:03,891 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:05:03,891 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 14:05:03,891 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,891 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,891 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,891 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:05:03,892 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:05:03,892 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:05:03,892 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:05:03,892 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:05:03,893 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 14:16:44,831 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 14:16:31
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 14:16:44,831 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 14:16:44,831 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 14:16:44,831 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 14:16:44,831 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 14:16:44,831 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 14:16:44,831 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 14:16:44,832 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 14:16:44,832 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 14:16:44,832 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8e2d88
+07 Oct 2021 14:16:44,832 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 14:16:44,832 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 14:16:44,832 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 14:16:44,832 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 14:16:44,832 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 14:16:44,832 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 14:16:44,832 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 14:16:44,832 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 14:16:44,834 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 14:16:44,835 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 14:16:44,835 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8e2d78
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8e2d68
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8e2d58
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 14:16:44,835 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 14:16:44,835 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:16:44,835 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 14:16:44,835 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,835 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,835 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,835 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:16:44,836 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:16:44,836 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 14:16:44,836 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,836 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:16:44,837 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:16:44,837 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 14:16:44,837 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,837 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:16:44,838 INFO  (main                     :197 ) - ---end main()---
+07 Oct 2021 14:18:07,788 INFO  (main                     :44  ) - ---start main()---
+Build time: Oct  7 2021 14:16:31
+Boost version: 107400
+Git branch: ???
+glibc version: 2.27
+g++ version: 10.2.0
+__cplusplus: 201703
+07 Oct 2021 14:18:07,789 INFO  (main                     :54  ) - auto factory is initialized. argc = 3
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :44  ) - Start init()
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :127 ) - get_path_to_rmq_configuration() is successful
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :132 ) - load_rabbit_mq_configuration() is successful
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :47  ) - rmq_cfg is initialized
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :138 ) - get_path_to_message_router_configuration() is successful
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :52  ) - message_router_cfg is initialized
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :54  ) - Start init() with params
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :117 ) - message_router_group_batch is created 0x8e2d88
+07 Oct 2021 14:18:07,789 DEBUG (ConnectionManager        :50  ) - Start constructor
+07 Oct 2021 14:18:07,789 INFO  (ConnectionManager        :57  ) - _debug = 1
+07 Oct 2021 14:18:07,789 DEBUG (AbstractCommonFactory    :154 ) - connection_manager_ptr is created 0x7fffffffd4a0
+07 Oct 2021 14:18:07,789 DEBUG (ConnectionManager        :68  ) - subscriber_name = 'rabbit_mq_subscriber.'
+07 Oct 2021 14:18:07,789 DEBUG (ConnectionManager        :73  ) - amqp_new_connection() successful
+07 Oct 2021 14:18:07,789 INFO  (ConnectionManager        :79  ) - amqp_tcp_socket_new(_conn) successful
+07 Oct 2021 14:18:07,789 INFO  (ConnectionManager        :86  ) - Connecting to amqp://rabbitmq:***@172.17.0.1:5672//
+07 Oct 2021 14:18:07,789 INFO  (ConnectionManager        :89  ) - amqp_socket_open() returns _status 0
+07 Oct 2021 14:18:07,791 INFO  (ConnectionManager        :100 ) - amqp_login() successful
+07 Oct 2021 14:18:07,792 INFO  (ConnectionManager        :110 ) - amqp_channel_open(_conn, _channel) successful
+07 Oct 2021 14:18:07,792 INFO  (ConnectionManager        :112 ) - amqp_get_rpc_reply(_conn) successful
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :156 ) - connection_manager_ptr init() successful
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :164 ) - create_rmq_connection_manager() is successful
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :106 ) - event_batch_router is created 0x8e2d78
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :95  ) - message_router_raw_batch is created 0x8e2d68
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :84  ) - message_router_parsed_batch is created 0x8e2d58
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :87  ) - message_router_parsed_batch init()
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :72  ) - init params
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :77  ) - end
+07 Oct 2021 14:18:07,792 INFO  (main                     :58  ) - factory->init() successful
+07 Oct 2021 14:18:07,792 DEBUG (AbstractCommonFactory    :98  ) - message_router_raw_batch init()
+07 Oct 2021 14:18:07,792 DEBUG (main                     :65  ) - auto raw_router = factory->get_message_router_raw_batch()
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :110 ) - raw_router->send(batch)
+07 Oct 2021 14:18:07,793 DEBUG (AbstractCommonFactory    :109 ) - event_batch_router init()
+07 Oct 2021 14:18:07,793 DEBUG (main                     :118 ) - auto event_router = factory->get_event_batch_router()
+07 Oct 2021 14:18:07,793 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,793 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :142 ) - event_router->send(event_batch)
+07 Oct 2021 14:18:07,794 DEBUG (AbstractCommonFactory    :120 ) - message_router_group_batch init()
+07 Oct 2021 14:18:07,794 DEBUG (main                     :150 ) - auto group_router = factory->get_message_router_message_group_batch()
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,794 DEBUG (main                     :192 ) - group_router->send(batch)
+07 Oct 2021 14:18:07,795 INFO  (main                     :197 ) - ---end main()---
